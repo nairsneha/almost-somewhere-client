@@ -30,7 +30,7 @@ const CardCarouselList = () => {
     return (
         <>
             <div>
-                <span>Name</span>
+                <span className="fs-4 fw-light">Name</span>
             </div>
             <Carousel responsive={responsive} autoPlaySpeed={3000} infinite itemClass="carousel-item-padding-40-px">
                 { cardList.map((item) => {
