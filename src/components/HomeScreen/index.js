@@ -1,11 +1,11 @@
 import React from "react";
-import CardCarousel from "./components/card-carousel";
+import CardCarouselList from "./components/card-carousel-list";
 import LocationCardList from "./components/location-card-list";
 
 const HomeScreen = () => {
     return(<div>
         <LocationCardList/>
-        <CardCarousel/>
+        <CardCarouselList/>
     </div>
     )}
 
