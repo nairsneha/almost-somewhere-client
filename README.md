@@ -17,3 +17,7 @@ npm install
 ```
 npm start
 ```
+
+
+### 3rd party libraries used -
+- [Carousel](!https://www.npmjs.com/package/react-multi-carousel)

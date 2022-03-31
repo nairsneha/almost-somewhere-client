@@ -40,7 +40,7 @@ const CardCarouselList = () => {
                         </div>
                     )
                 })}
-            </Carousel>;
+            </Carousel>
 
 
         </>
