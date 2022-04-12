@@ -4,10 +4,8 @@ import PlaceDetails from "./components/place-details";
 const DetailsScreen = () => {
     return(
         <div>
-            <h1>Details Screen</h1>
-            {/*<ImageCarousel/>*/}
+            <ImageCarousel/>
             <PlaceDetails/>
-
         </div>
     )
 }
