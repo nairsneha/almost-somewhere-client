@@ -1,7 +1,14 @@
 import React, {useState} from "react";
 import { Rating } from 'react-simple-star-rating';
 
-const ReviewItem = () => {
+const ReviewItem = ({
+    reviewItem = {
+        authorName: "SANDEEP BASU",
+        profilePhotoUrl: "https://lh3.googleusercontent.com/a-/AOh14GgYpi8WWJX--p7f_7wkq5Wa5GQYeogAOYVKSlk5pw=s128-c0x00000000-cc-rp-mo",
+        rating: 5,
+        text: "Huntington YMCA is a great place to do fitness activities. I recently joined a swimming class (beginner level) and loved it totally! Very clean swimming pool, great instructor, and staffs are friendly. I am going to enroll for another 8 weeks of swimming lessons in the new year (2022)!"
+    }
+}) => {
     
    
 
@@ -11,22 +18,22 @@ const ReviewItem = () => {
                 <div className="card-body">
                     <div className="row m-2">
                         <div className="col-md-2 ps-4">
-                            <img src="../../../images/profilepic.jpeg" style={{height: "100px"}} className="img rounded-circle img-fluid"/>
+                            <img src={`http://almost-somewhere.herokuapp.com/${reviewItem.profilePhotoUrl}`} style={{height: "100px"}} className="img rounded-circle img-fluid"/>
                         </div>
                         <div className="col-md-10">   
                             <div className="m-2">
-                                <h5>Hinata Shoyo</h5>
+                                <h5>{reviewItem.authorName}</h5>
                             </div>
                             <div>
                                 <Rating
                                 initialValue={0}
-                                ratingValue={0} /* Available Props */ />
+                                ratingValue={reviewItem.rating} /* Available Props */ />
                             </div>         
                         </div>
                     </div>
                     <div className="row p-2 m-2">
                         <div>      
-                                <p>Lorem Ipsum is simply dummy text of the pr make  but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                <p>{reviewItem.text}</p>
                                 <p>
                                     <a className="float-right btn text-white btn-info"> <i className="fa fa-thumbs-up"></i> Useful</a>
                                 </p>

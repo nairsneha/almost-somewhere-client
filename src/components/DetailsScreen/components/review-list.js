@@ -20,6 +20,12 @@ const ReviewCardList = () => {
                 <ReviewForm/>
             </div> : ""}
             <div>
+                {/* {
+                    reviews.map && reviews.map(review =>
+                    {review._id = new Date().getTime() + Math.random() + "" 
+                    return(<ReviewItem key={review._id} reviewItem={review}/>)
+                    })
+                } */}
                 <ReviewItem/>
             </div>
         </>

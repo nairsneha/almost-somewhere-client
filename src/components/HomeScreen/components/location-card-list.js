@@ -5,7 +5,6 @@ const LocationCardList = () => {
     const CARD_LIMIT = 6;
     let loc =  locdetails.filter((val,index) => index < CARD_LIMIT);
     return (
-
         <>
         <div className="row row-cols-1 row-cols-md-3 g-4">
         {
