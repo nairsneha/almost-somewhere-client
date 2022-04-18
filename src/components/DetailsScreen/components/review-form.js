@@ -8,6 +8,7 @@ const ReviewForm = () => {
 
     const handleRating = (rate) => {
         setRating(rate)
+        console.log(rate)
     }
 
     // const [newReview, setNewReview] = useState({review: ""});

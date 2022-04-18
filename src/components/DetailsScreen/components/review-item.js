@@ -5,7 +5,7 @@ const ReviewItem = ({
     reviewItem = {
         authorName: "SANDEEP BASU",
         profilePhotoUrl: "https://lh3.googleusercontent.com/a-/AOh14GgYpi8WWJX--p7f_7wkq5Wa5GQYeogAOYVKSlk5pw=s128-c0x00000000-cc-rp-mo",
-        rating: 5,
+        rating: 4,
         text: "Huntington YMCA is a great place to do fitness activities. I recently joined a swimming class (beginner level) and loved it totally! Very clean swimming pool, great instructor, and staffs are friendly. I am going to enroll for another 8 weeks of swimming lessons in the new year (2022)!"
     }
 }) => {
@@ -26,8 +26,10 @@ const ReviewItem = ({
                             </div>
                             <div>
                                 <Rating
+                                readonly = {true}
+                                allowHover = {false}
                                 initialValue={0}
-                                ratingValue={reviewItem.rating} /* Available Props */ />
+                                ratingValue={(reviewItem.rating/5) * 100} /* Available Props */ />
                             </div>         
                         </div>
                     </div>
