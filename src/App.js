@@ -20,8 +20,7 @@ function App() {
                               element={<HomeScreen/>}/>
                         <Route path="detail/:id"
                         element={<DetailsScreen/>}/>
-                     </Route> 
-                      
+                     </Route>
               </Routes>
            </div>
          </BrowserRouter>

@@ -1,12 +1,14 @@
 import React from "react";
 import "./carousel.css"
+import {Rating} from "react-simple-star-rating";
 
 {/*            <img className="d-block w-100" src="../images/tokyo-your-name.jpg" alt="First slide"></img>*/
 }
 const ImageCarousel = ({
                            details = {
                                name: "YMCA of Greater Boston - Huntington Ave",
-                               photos: ["../images/tokyo-your-name.jpg", "../images/inspiration4.jpg"]
+                               photos: ["../images/tokyo-your-name.jpg", "../images/inspiration4.jpg"],
+                               "rating": 4.0
                            }
                        }) => {
     return (
@@ -47,7 +49,11 @@ const ImageCarousel = ({
                 </button>
             </div>
             <div className="position-absolute left-corner">
-                <span className="fs-3 fw-bold text-white">{details.name}</span>
+                <span className="fs-3 fw-bold text-white">{details.name}</span><br/>
+                <span><Rating
+                    readonly={true}
+                    allowHover={false}
+                    ratingValue={details.rating*20} /></span>
             </div>
 
         </>
