@@ -1,16 +1,22 @@
 import LocationCard from "./location-card";
-import fallbackLocdetails from "../../../data/loc-card-list-data.json";
-
-const LocationCardList = ({locdetails=fallbackLocdetails}) => {
+const LocationCardList = ({locDetails=[
+    {name: "Web Development",
+    photos: [{photo_reference:'../../../../public/images/tokyo-your-name.jpg'}
+    ]
+}]}) => {
     const CARD_LIMIT = 6;
-    let loc =  locdetails.filter((val,index) => index < CARD_LIMIT);
+    console.log(locDetails);
+    let filteredLocation =  locDetails.filter((val,index) => index < CARD_LIMIT);
+    console.log("filteredloc");
+    console.log(filteredLocation);
     return (
         <>
         <div className="row row-cols-1 row-cols-md-3 g-4">
         {
-            loc.map(locdetail => {
-                locdetail._id = new Date().getTime() + Math.random() + "" 
-                return(<LocationCard locdetails={locdetail} key={locdetail._id}/>
+            filteredLocation.map(loc => {
+                let id = new Date().getTime() + Math.random() + ""
+                return(
+                    <LocationCard locDetail={loc} key={id}/>
                 );
             })
         }
