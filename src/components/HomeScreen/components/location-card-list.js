@@ -1,7 +1,7 @@
 import LocationCard from "./location-card";
-import locdetails from "../../../data/loc-card-list-data.json";
+import fallbackLocdetails from "../../../data/loc-card-list-data.json";
 
-const LocationCardList = () => {
+const LocationCardList = ({locdetails=fallbackLocdetails}) => {
     const CARD_LIMIT = 6;
     let loc =  locdetails.filter((val,index) => index < CARD_LIMIT);
     return (
