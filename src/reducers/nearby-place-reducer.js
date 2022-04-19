@@ -4,17 +4,11 @@ const nearbyPlaceReducer = (state = {recentPlaces:[],gymPlaces:[],restaurantPlac
     switch (action.type) {
         case FIND_RECENT_PLACES:
             // state.recentPlaces = action.response;
-            let newS = {...{state},recentPlaces:action.response};
-            console.log(newS);
-            return newS;
+            return {...state,recentPlaces:action.response};
         case FIND_GYM_PLACES:
-            // state.gymPlaces = action.response;
-            return {...{state},gymPlaces:action.response};
-            // return state;
+            return {...state,gymPlaces:action.response};
         case FIND_RESTAURANT_PLACES:
-            return {...{state},restaurantPlaces:action.response};
-            // state.restaurantPlaces = action.response;
-            // return state;
+            return {...state,restaurantPlaces:action.response};
         default:
             return state;
     }
