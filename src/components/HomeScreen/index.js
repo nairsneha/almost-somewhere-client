@@ -18,26 +18,27 @@ const HomeScreen = () => {
         findRestaurantCards();
     }
     const findRecentCards = () => {
-        findPlaces(dispatcher, FIND_RECENT_PLACES,{});
+        findPlaces(dispatcher, FIND_RECENT_PLACES, {});
     }
     const findRestaurantCards = () => {
-        let params = {type:"restaurant"};
-        findPlaces(dispatcher, FIND_RESTAURANT_PLACES,params);
+        let params = {type: "restaurant"};
+        findPlaces(dispatcher, FIND_RESTAURANT_PLACES, params);
     }
     const findGymCards = () => {
-        let params = {type:"gym"};
-        findPlaces(dispatcher, FIND_GYM_PLACES,params);
+        let params = {type: "gym"};
+        findPlaces(dispatcher, FIND_GYM_PLACES, params);
     }
 
 
     useEffect(() => findNearByPlaces(), []);
 
-    return(
+    return (
         <div>
             <LocationCardList locDetails={data.recentPlaces.results}/>
             <CardCarouselList title="Restaurant" locDetails={data.restaurantPlaces.results}/>
             <CardCarouselList title="Gym" locDetails={data.gymPlaces.results}/>
         </div>
-    )}
+    )
+}
 
 export default HomeScreen;
