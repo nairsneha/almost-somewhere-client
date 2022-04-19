@@ -2,9 +2,15 @@ import React from "react";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Card from "./location-card";
-import cardList from "../../../data/loc-card-list-data.json"
 
-const CardCarouselList = () => {
+const CardCarouselList = ({
+                              title="Title",locDetails = [
+                                  {
+                                      name: "Web Development",
+                                      photos: [{photo_reference: 'Aap_uEAiPnzpgDWC_ErLs0eTy-LF8_cCEidmA_ls-3B7o6-832qJgOAv_6UeoJ37j-eC6f20yJwC5SXOROwSxY4m16c59d5iMSAJZ0_s1psMfPNaCGWX1m2t4kx7Tcp2B4dCl2Oy_TooFjbV9P5poUXHkd7OT56ifckvECx7nkRMK0OhfCXS'}
+                                      ]
+                                  }]
+                          }) => {
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -27,16 +33,17 @@ const CardCarouselList = () => {
             items: 1
         }
     };
+    let filteredLocation = locDetails.filter((val) => val.photos && val.photos.length > 0);
     return (
         <>
             <div>
-                <span className="fs-4 fw-light">Name</span>
+                <span className="fs-2 fw-light">{title}</span>
             </div>
             <Carousel responsive={responsive} autoPlaySpeed={3000} infinite itemClass="carousel-item-padding-40-px">
-                { cardList.map((item) => {
-                    return(
-                        <div className="pe-5">
-                            <Card locdetails={item}/>
+                {filteredLocation.map((item) => {
+                    return (
+                        <div key={new Date().getTime() + ""} className="pe-5">
+                            <Card locDetail={item}/>
                         </div>
                     )
                 })}
