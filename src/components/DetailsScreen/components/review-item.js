@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {findImage} from "../../../actions/common-action";
 import { Rating } from 'react-simple-star-rating';
 
 const ReviewItem = ({
@@ -18,7 +19,7 @@ const ReviewItem = ({
                 <div className="card-body">
                     <div className="row m-2">
                         <div className="col-md-2 ps-4">
-                            <img src={`http://almost-somewhere.herokuapp.com/${reviewItem.profilePhotoUrl}`} style={{height: "100px"}} className="img rounded-circle img-fluid"/>
+                            <img src={findImage(reviewItem.profilePhotoUrl)} style={{height: "100px"}} className="img rounded-circle img-fluid"/>
                         </div>
                         <div className="col-md-10">   
                             <div className="m-2">

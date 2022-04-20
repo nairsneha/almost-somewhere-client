@@ -16,11 +16,12 @@ const DetailsScreen = () => {
     useEffect(() => findDetail(), []);
 
     const placeDetail = useSelector(({placeDetail}) => placeDetail);
+
     return (
         <div>
             <ImageCarousel placeDetails={placeDetail}/>
             <PlaceDetails placeDetail={placeDetail}/>
-            <ReviewCardList/>
+            <ReviewCardList placeDetail={placeDetail}/>
         </div>
     )
 }
