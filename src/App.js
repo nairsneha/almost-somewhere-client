@@ -18,7 +18,7 @@ function App() {
                         element={<AlmostSomewhere/>}>
                         <Route index
                               element={<HomeScreen/>}/>
-                        <Route path="details/:id"
+                        <Route path="detail/:id"
                         element={<DetailsScreen/>}/>
                      </Route>
               </Routes>
