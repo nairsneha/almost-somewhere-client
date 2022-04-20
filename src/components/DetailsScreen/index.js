@@ -6,7 +6,6 @@ import {findPlaceDetail} from "../../actions/place-details-action";
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 
-
 const DetailsScreen = () => {
     const placeId = useParams().id;
     const dispatch = useDispatch();
