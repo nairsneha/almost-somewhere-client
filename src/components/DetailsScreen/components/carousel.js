@@ -19,20 +19,7 @@ const ImageCarousel = ({
                                     className="d-block w-100 active" height="400px" alt="...">
                                 </img>
                             </div>
-                        // className={`d-block w-100 active ${index === 0 ? 'active' : ''}`} alt="...">
                     )}
-                    {/*<div className="carousel-item active">*/}
-                    {/*    */}
-
-                    {/*</div>*/}
-                    {/*<div className="carousel-item">*/}
-                    {/*    <img src="../images/inspiration4.jpg" className="d-block w-100" alt="...">*/}
-                    {/*    </img>*/}
-                    {/*</div>*/}
-                    {/*<div className="carousel-item">*/}
-                    {/*    <img src="../images/inspiration4.jpg" className="d-block w-100" alt="...">*/}
-                    {/*    </img>*/}
-                    {/*</div>*/}
                 </div>
                 <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                         data-bs-slide="prev">
