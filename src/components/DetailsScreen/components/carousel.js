@@ -16,7 +16,7 @@ const ImageCarousel = ({
             <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
                 <div className="carousel-inner">
                     {details.photos.map((image,index) =>
-                        <div className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+                        <div key={new Date().getTime()+Math.random()} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
                             <img
                                 key={image} src={image}
                                 className="d-block w-100 active" height="400px" alt="...">

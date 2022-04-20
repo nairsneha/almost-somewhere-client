@@ -1,18 +1,7 @@
 import React from "react"
 
-const PlaceDetails = ({details = {
-    formattedPhoneNumber: "(617) 927-8060",
-    openNow: false,
-    weekdayText: [
-        "Monday: 6:00 AM – 10:00 PM",
-        "Tuesday: 6:00 AM – 10:00 PM",
-        "Wednesday: 6:00 AM – 10:00 PM",
-        "Thursday: 6:00 AM – 10:00 PM",
-        "Friday: 6:00 AM – 9:00 PM",
-        "Saturday: 7:00 AM – 6:00 PM",
-        "Sunday: 8:00 AM – 5:00 PM"
-    ],
-    formattedAddress: "75 Saint Alphonsus Street, Boston, MA 02120"}}) => {
+const PlaceDetails = ({placeDetail}) => {
+    const details = updateWithDefaultValues(placeDetail);
     return(
         <div className="card">
             <div className="card-body">
@@ -39,5 +28,22 @@ const PlaceDetails = ({details = {
             </div>
         </div>
     )
+}
+
+const updateWithDefaultValues = (placeDetail) => {
+    const defObj = {
+        formattedPhoneNumber: "(617) 927-8060",
+        openNow: false,
+        weekdayText: [
+            "Monday: 6:00 AM – 10:00 PM",
+            "Tuesday: 6:00 AM – 10:00 PM",
+            "Wednesday: 6:00 AM – 10:00 PM",
+            "Thursday: 6:00 AM – 10:00 PM",
+            "Friday: 6:00 AM – 9:00 PM",
+            "Saturday: 7:00 AM – 6:00 PM",
+            "Sunday: 8:00 AM – 5:00 PM"
+        ],
+        formattedAddress: "75 Saint Alphonsus Street, Boston, MA 02120"};
+    return {...defObj,...placeDetail};
 }
 export default PlaceDetails
