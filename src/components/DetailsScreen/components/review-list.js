@@ -5,8 +5,6 @@ import ReviewForm from "./review-form";
 
 const ReviewCardList = ({ placeDetail = {reviews : []}}) => {
 
-    console.log(placeDetail.reviews)
-
     const reviews  = placeDetail.reviews;
 
     const [toggleForm, setToggleForm] = useState(false) // initial rating value
