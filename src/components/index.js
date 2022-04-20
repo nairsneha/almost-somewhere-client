@@ -3,8 +3,9 @@ import {Provider} from "react-redux";
 import {createStore, combineReducers} from "redux";
 import nearbyPlaceReducer  from "../reducers/nearby-place-reducer";
 import placeDetailReducer from "../reducers/place-detail-reducer";
+import reviewsReducer from "../reducers/reviews-reducer";
 
-const reducer = combineReducers({nearByPlaces: nearbyPlaceReducer, placeDetail: placeDetailReducer});
+const reducer = combineReducers({nearByPlaces: nearbyPlaceReducer, placeDetail: placeDetailReducer, ourReviews: reviewsReducer});
 const store = createStore(reducer);
 
 const AlmostSomewhere = () => {
