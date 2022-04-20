@@ -1,27 +1,24 @@
 import React from "react";
 import "./carousel.css"
 import {Rating} from "react-simple-star-rating";
+import {findImage} from "../../../actions/common-action";
 
-{/*            <img className="d-block w-100" src="../images/tokyo-your-name.jpg" alt="First slide"></img>*/
-}
 const ImageCarousel = ({
-                           details = {
-                               name: "YMCA of Greater Boston - Huntington Ave",
-                               photos: ["../images/tokyo-your-name.jpg", "../images/inspiration4.jpg"],
-                               "rating": 4.0
-                           }
+                           placeDetails
                        }) => {
+    const details = updateWithDefaultValues(placeDetails);
     return (
         <>
             <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
                 <div className="carousel-inner">
-                    {details.photos.map((image,index) =>
-                        <div key={new Date().getTime()+Math.random()} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
-                            <img
-                                key={image} src={image}
-                                className="d-block w-100 active" height="400px" alt="...">
-                            </img>
-                        </div>
+                    {details.photos.map((image, index) =>
+                            <div key={new Date().getTime() + Math.random()}
+                                 className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+                                <img
+                                    key={image.photoReference} src={findImage(image.photoReference)}
+                                    className="d-block w-100 active" height="400px" alt="...">
+                                </img>
+                            </div>
                         // className={`d-block w-100 active ${index === 0 ? 'active' : ''}`} alt="...">
                     )}
                     {/*<div className="carousel-item active">*/}
@@ -53,11 +50,20 @@ const ImageCarousel = ({
                 <span><Rating
                     readonly={true}
                     allowHover={false}
-                    ratingValue={details.rating*20} /></span>
+                    ratingValue={details.rating * 20}/></span>
             </div>
 
         </>
     )
+}
+
+const updateWithDefaultValues = (placeDetail) => {
+    const defObj = {
+        name: "YMCA of Greater Boston - Huntington Ave",
+        photos: [{photoReference: "../images/tokyo-your-name.jpg"}, {photoReference: "../images/inspiration4.jpg"}],
+        "rating": 4.0
+    };
+    return {...defObj, ...placeDetail};
 }
 
 export default ImageCarousel;

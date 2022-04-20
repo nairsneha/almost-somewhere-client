@@ -18,7 +18,7 @@ const DetailsScreen = () => {
     const placeDetail = useSelector(({placeDetail}) => placeDetail);
     return (
         <div>
-            <ImageCarousel/>
+            <ImageCarousel placeDetails={placeDetail}/>
             <PlaceDetails placeDetail={placeDetail}/>
             <ReviewCardList/>
         </div>
