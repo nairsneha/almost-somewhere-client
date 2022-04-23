@@ -1,5 +1,3 @@
+import { REACT_APP_API_BASE } from "../config";
 
-// const API_BASE = process.env.REACT_APP_API_BASE || "http://almost-somewhere.herokuapp.com";
-const API_BASE ="http://almost-somewhere.herokuapp.com";
-export const PHOTOS_API = `${API_BASE}/places/photo`;
-
+export const PHOTOS_API = `${REACT_APP_API_BASE}/places/photo`;
