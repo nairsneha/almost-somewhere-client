@@ -1,0 +1,31 @@
+.wd-profile-banner {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.wd-profile-picture-container {
+  width: 150px;
+  height: 75px;
+  position: relative;
+  z-index: 2;
+}
+
+.wd-profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  position: absolute;
+  top: -100%;
+}
+
+.wd-edit-profile-pic-overlay {
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.wd-edit-banner-pic-overlay {
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.4);
+}
