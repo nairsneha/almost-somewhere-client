@@ -17,8 +17,6 @@ export const addUser = async (dispatch, username) => {
     profilePicUrl:
       "https://hips.hearstapps.com/digitalspyuk.cdnds.net/17/13/1490989105-twitter1.jpg?resize=480:*",
   };
-
-  console.log("added user");
   dispatch({
     type: ADD_USER,
     user: dummyUser,

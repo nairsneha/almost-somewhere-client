@@ -19,7 +19,6 @@ const FollowListItem = ({ username }) => {
         setUser(knownUsers.get(username));
       }
     };
-    console.log("useEffect");
     getUserHandler();
   }, [knownUsers, username]);
 
