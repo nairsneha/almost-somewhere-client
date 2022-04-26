@@ -1,4 +1,4 @@
-import { ADD_USER } from "../actions/known-users-action";
+import { ADD_USER, UPDATE_USER } from "../actions/known-users-action";
 
 /**
  * Keeps track of the info of users we've came accross till now. Acts as a caching mechanism to reduce API calls.
@@ -18,9 +18,13 @@ const knownUsersReducer = (state = new Map(), action) => {
       }
       // TODO: Add actual logic to see if the current user follows this user.
       newUser.following = false;
-      const stateCopy = new Map(state);
-      stateCopy.set(newUser.username, newUser);
-      return stateCopy;
+      var _state = new Map(state);
+      _state.set(newUser.username, newUser);
+      return _state;
+    case UPDATE_USER:
+      var _state = new Map(state);
+      _state.set(action.user.username, action.user);
+      return _state;
     default:
       return new Map(state);
   }
