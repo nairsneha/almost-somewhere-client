@@ -21,7 +21,7 @@ const FollowListItem = ({ username }) => {
       }
     };
     getUserHandler();
-  }, [knownUsers, username]);
+  }, [knownUsers, username, dispatch]);
 
   const followOnClick = () => {
     //TODO: Replace with an actual call to API
