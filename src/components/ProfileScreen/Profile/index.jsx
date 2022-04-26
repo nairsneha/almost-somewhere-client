@@ -42,19 +42,6 @@ const Profile = ({ profile }) => {
             </div>
           </div>
         )}
-
-        <div className="d-flex gap-4 mt-2">
-          {/* TODO: Make this a link */}
-          <div>
-            <span className="fw-bold">{profile.following.length}</span>{" "}
-            <span className="text-muted">Following</span>
-          </div>
-          {/* TODO: Make this a link */}
-          <div>
-            <span className="fw-bold">{profile.followers.length}</span>{" "}
-            <span className="text-muted">Followers</span>
-          </div>
-        </div>
         <ul className="nav nav-tabs">
           <li className="nav-item" onClick={() => setCurrentTab(1)}>
             <a
