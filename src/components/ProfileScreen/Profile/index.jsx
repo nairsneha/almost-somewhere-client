@@ -1,4 +1,5 @@
 import React from "react";
+import FollowList from "../FollowList";
 import "../profile-screen.css";
 
 const Profile = ({ profile }) => {
@@ -52,6 +53,24 @@ const Profile = ({ profile }) => {
             <span className="text-muted">Followers</span>
           </div>
         </div>
+        <ul className="nav nav-tabs">
+          <li className="nav-item">
+            <a className="nav-link active" aria-current="page" href="#">
+              Reviews
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#">
+              Followers
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#">
+              Following
+            </a>
+          </li>
+        </ul>
+        <FollowList usernameList={[1, 2]} />
       </div>
     </>
   );
