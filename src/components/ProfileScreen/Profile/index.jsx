@@ -1,8 +1,10 @@
 import React from "react";
+import { useState } from "react";
 import FollowList from "../FollowList";
 import "../profile-screen.css";
 
 const Profile = ({ profile }) => {
+  const [currentTab, setCurrentTab] = useState(1);
   return (
     <>
       <img
@@ -54,23 +56,35 @@ const Profile = ({ profile }) => {
           </div>
         </div>
         <ul className="nav nav-tabs">
-          <li className="nav-item">
-            <a className="nav-link active" aria-current="page" href="#">
+          <li className="nav-item" onClick={() => setCurrentTab(1)}>
+            <a
+              className={`nav-link ${currentTab === 1 ? "active" : ""}`}
+              aria-current="page"
+              href="#"
+            >
               Reviews
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">
+          <li className="nav-item" onClick={() => setCurrentTab(2)}>
+            <a
+              className={`nav-link ${currentTab === 2 ? "active" : ""}`}
+              href="#"
+            >
               Followers
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">
+          <li className="nav-item" onClick={() => setCurrentTab(3)}>
+            <a
+              className={`nav-link ${currentTab === 3 ? "active" : ""}`}
+              href="#"
+            >
               Following
             </a>
           </li>
         </ul>
-        <FollowList usernameList={[1, 2]} />
+        {/* Set currenttab == 1 */}
+        {currentTab === 2 && <FollowList usernameList={[1, 2, 3]} />}
+        {currentTab === 3 && <FollowList usernameList={[1, 2, 3]} />}
       </div>
     </>
   );

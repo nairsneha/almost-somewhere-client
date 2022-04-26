@@ -33,9 +33,9 @@ const FollowListItem = ({ username }) => {
         </div>
       </div>
       {user.following ? (
-        <button className="btn btn-primary btn rounded-pill">Unfollow</button>
+        <button className="btn btn-dark btn rounded-pill">Unfollow</button>
       ) : (
-        <button className="btn btn-secondary btn rounded-pill">Follow</button>
+        <button className="btn btn-primary btn rounded-pill">Follow</button>
       )}
     </div>
   );
