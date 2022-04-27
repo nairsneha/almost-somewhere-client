@@ -43,31 +43,31 @@ const Profile = ({ profile }) => {
             </div>
           </div>
         )}
-        <ul className="nav nav-tabs">
+        <ul className="nav nav-tabs mt-2">
           <li className="nav-item" onClick={() => setCurrentTab(1)}>
-            <a
+            <span
               className={`nav-link ${currentTab === 1 ? "active" : ""}`}
               aria-current="page"
               href="#"
             >
               Reviews
-            </a>
+            </span>
           </li>
           <li className="nav-item" onClick={() => setCurrentTab(2)}>
-            <a
+            <span
               className={`nav-link ${currentTab === 2 ? "active" : ""}`}
               href="#"
             >
               Followers
-            </a>
+            </span>
           </li>
           <li className="nav-item" onClick={() => setCurrentTab(3)}>
-            <a
+            <span
               className={`nav-link ${currentTab === 3 ? "active" : ""}`}
               href="#"
             >
               Following
-            </a>
+            </span>
           </li>
         </ul>
         {currentTab === 1 && <ProfileReviewList username={profile.username} />}

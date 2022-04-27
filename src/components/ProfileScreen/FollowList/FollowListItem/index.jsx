@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { addUser, updateUser } from "../../../../actions/known-users-action";
 import "./follow-list-item.css";
 
@@ -39,10 +40,15 @@ const FollowListItem = ({ username }) => {
           className="rounded-circle follow-avatar"
         />
         <div>
-          <div className="fw-bold text-wrap">
-            {user?.firstname} {user?.lastname}{" "}
-            <i className="fa-solid fa-circle-check"></i>
-          </div>
+          <Link
+            className="follow-profile-link"
+            to={`/profile/${user?.username}`}
+          >
+            <div className="fw-bold text-wrap">
+              {user?.firstname} {user?.lastname}{" "}
+              <i className="fa-solid fa-circle-check"></i>
+            </div>
+          </Link>
           @{user?.username}
         </div>
       </div>
