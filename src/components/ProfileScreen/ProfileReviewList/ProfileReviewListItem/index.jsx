@@ -27,12 +27,6 @@ const ProfileReviewListItem = ({ profileReview }) => {
           <div className="row p-2 m-2">
             <div>
               <p>{profileReview.text}</p>
-              <p>
-                <a className="float-right btn text-white btn-info">
-                  {" "}
-                  <i className="fa fa-thumbs-up"></i> Useful
-                </a>
-              </p>
             </div>
           </div>
         </div>
