@@ -1,6 +1,7 @@
 .follow-avatar {
   height: 48px;
   width: 48px;
+  object-fit: cover;
 }
 .follow-profile-link {
   color: inherit !important;

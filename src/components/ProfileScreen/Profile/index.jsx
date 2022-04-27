@@ -22,6 +22,7 @@ const Profile = ({ profile }) => {
               className="wd-profile-picture"
             />
           </div>
+          {/* TODO: Check if the user is current user; only then show this edit button */}
           <div>
             <button className="btn btn-outline-dark rounded-pill mt-2">
               Edit Profile
