@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import FollowList from "../FollowList";
 import "../profile-screen.css";
+import ProfileReviewList from "../ProfileReviewList";
 
 const Profile = ({ profile }) => {
   const [currentTab, setCurrentTab] = useState(1);
@@ -69,7 +70,7 @@ const Profile = ({ profile }) => {
             </a>
           </li>
         </ul>
-        {/* Set currenttab == 1 */}
+        {currentTab === 1 && <ProfileReviewList username={profile.username} />}
         {currentTab === 2 && <FollowList usernameList={[1, 2, 3]} />}
         {currentTab === 3 && <FollowList usernameList={[1, 2, 3]} />}
       </div>
