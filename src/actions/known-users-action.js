@@ -17,6 +17,7 @@ export const addUser = async (dispatch, username) => {
     following: ["sneha"],
     profilePicUrl:
       "https://hips.hearstapps.com/digitalspyuk.cdnds.net/17/13/1490989105-twitter1.jpg?resize=480:*",
+    bannerPicUrl: "https://pbs.twimg.com/media/D-jnKUPU4AE3hVR.jpg",
   };
   dispatch({
     type: ADD_USER,
