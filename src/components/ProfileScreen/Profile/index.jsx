@@ -1,11 +1,13 @@
 import React from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import FollowList from "../FollowList";
 import "../profile-screen.css";
 import ProfileReviewList from "../ProfileReviewList";
 
 const Profile = ({ profile }) => {
   const [currentTab, setCurrentTab] = useState(1);
+
   return (
     <>
       <img
@@ -24,9 +26,11 @@ const Profile = ({ profile }) => {
           </div>
           {/* TODO: Check if the user is current user; only then show this edit button */}
           <div>
-            <button className="btn btn-outline-dark rounded-pill mt-2">
-              Edit Profile
-            </button>
+            <Link to="/profile/edit">
+              <button className="btn btn-outline-dark rounded-pill mt-2">
+                Edit Profile
+              </button>
+            </Link>
           </div>
         </div>
         <div className="mt-2">
