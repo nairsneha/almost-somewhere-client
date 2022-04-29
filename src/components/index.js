@@ -5,13 +5,13 @@ import {createStore, combineReducers} from "redux";
 import nearbyPlaceReducer  from "../reducers/nearby-place-reducer";
 import placeDetailReducer from "../reducers/place-detail-reducer";
 import reviewsReducer from "../reducers/reviews-reducer";
-import NavBar from "./navBar/index.js";
+// import NavBar from "./navBar/index.js";
 const reducer = combineReducers({nearByPlaces: nearbyPlaceReducer, placeDetail: placeDetailReducer, ourReviews: reviewsReducer});
 const store = createStore(reducer);
 
 const AlmostSomewhere = () => {
     return(<>
-        <NavBar />
+        {/*<NavBar />*/}
         <Provider store={store}>
             <div>
                 <div>
