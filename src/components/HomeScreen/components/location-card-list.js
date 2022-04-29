@@ -1,3 +1,4 @@
+import React from "react";
 import LocationCard from "./location-card";
 
 const LocationCardList = ({
