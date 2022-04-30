@@ -1,3 +1,5 @@
+import { getUserBio } from "../services/user-bio-service";
+
 export const ADD_USER = "ADD_USER";
 export const UPDATE_USER = "UPDATE_USER";
 
@@ -8,20 +10,10 @@ export const UPDATE_USER = "UPDATE_USER";
  * @param {*} username
  */
 export const addUser = async (dispatch, username) => {
-  // TODO: Replace with an actual API call.
-  const dummyUser = {
-    username: username,
-    firstname: "John",
-    lastname: "Doe",
-    followers: ["sneha"],
-    following: ["sneha"],
-    profilePicUrl:
-      "https://hips.hearstapps.com/digitalspyuk.cdnds.net/17/13/1490989105-twitter1.jpg?resize=480:*",
-    bannerPicUrl: "https://pbs.twimg.com/media/D-jnKUPU4AE3hVR.jpg",
-  };
+  const user = await getUserBio(username);
   dispatch({
     type: ADD_USER,
-    user: dummyUser,
+    user: user,
   });
 };
 
@@ -32,20 +24,10 @@ export const addUser = async (dispatch, username) => {
  * @param {*} username username of the user to be updated.
  */
 export const updateUserWithUsername = async (dispatch, username) => {
-  // TODO: Make an actual API call.
-  const dummyUser = {
-    username: username,
-    firstname: "John",
-    lastname: "Doe",
-    followers: ["sneha"],
-    following: ["sneha"],
-    profilePicUrl:
-      "https://hips.hearstapps.com/digitalspyuk.cdnds.net/17/13/1490989105-twitter1.jpg?resize=480:*",
-  };
-
+  const user = getUserBio(username);
   dispatch({
     type: UPDATE_USER,
-    user: dummyUser,
+    user: user,
   });
 };
 

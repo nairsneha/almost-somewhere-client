@@ -30,7 +30,6 @@ const ProfileScreen = () => {
         fetchUserHandler();
       }
       setProfile(knownUsers.get(username));
-      // TODO: fetch this user from the API
     } else {
       // TODO: Replace profile_d with the logged in user
       setProfile(profile_d);
