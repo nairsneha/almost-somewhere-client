@@ -1,7 +1,27 @@
-import React from "react"
+import React, {useEffect} from "react"
+import ImageCarousel from "./components/carousel";
+import PlaceDetails from "./components/place-details";
+import ReviewCardList from "./components/review-list";
+import {findPlaceDetail} from "../../actions/place-details-action";
+import {useParams} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+
 const DetailsScreen = () => {
-    return(<div>
-        <h1>Details Screen</h1>
-    </div>)
+    const placeId = useParams().id;
+    const dispatch = useDispatch();
+    const findDetail = () => {
+        findPlaceDetail(dispatch, placeId);
+    }
+    useEffect(() => findDetail(), []);
+
+    const placeDetail = useSelector(({placeDetail}) => placeDetail);
+
+    return (
+        <div>
+            <ImageCarousel placeDetails={placeDetail}/>
+            <PlaceDetails placeDetail={placeDetail}/>
+            <ReviewCardList placeDetail={placeDetail}/>
+        </div>
+    )
 }
 export default DetailsScreen
