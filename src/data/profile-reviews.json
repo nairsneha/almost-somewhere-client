@@ -1,0 +1,29 @@
+[
+  {
+    "_id": 123,
+    "authorName": "Angela Long",
+    "placeName": "Northeastern University",
+    "username": "xyz",
+    "placeId": "something",
+    "rating": 5,
+    "text": "The place is very open and airy, clean and bright. Overall, it's a fun place to go."
+  },
+  {
+    "_id": 123,
+    "authorName": "Angela Long",
+    "placeName": "Northeastern University",
+    "username": "xyz",
+    "placeId": "something",
+    "rating": 5,
+    "text": "The place is very open and airy, clean and bright. Overall, it's a fun place to go."
+  },
+  {
+    "_id": 123,
+    "authorName": "Angela Long",
+    "placeName": "Northeastern University",
+    "username": "xyz",
+    "placeId": "something",
+    "rating": 5,
+    "text": "The place is very open and airy, clean and bright. Overall, it's a fun place to go."
+  }
+]
