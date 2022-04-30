@@ -1,3 +1,4 @@
+import React from "react";
 import { findImage } from "../../../actions/common-action";
 import { Rating } from "react-simple-star-rating";
 
