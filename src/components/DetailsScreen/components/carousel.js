@@ -21,9 +21,9 @@ const ImageCarousel = ({ placeDetails }) => {
               <img
                 key={image.photoReference}
                 src={findImage(image.photoReference)}
-                className="d-block w-100 active"
+                className="d-block w-100 active details-carousel-img"
                 height="400px"
-                alt="..."
+                alt={details.name}
               ></img>
             </div>
           ))}

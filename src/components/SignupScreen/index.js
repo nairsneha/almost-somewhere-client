@@ -3,7 +3,9 @@ import api from '../../services/user-service'
 import {Link, useNavigate} from "react-router-dom";
 const SignUp=()=>{
     const navigate = useNavigate();
-    const[user, setUser]=useState({userType:"Admin",
+    const[user, setUser]=useState({
+
+                                      userType:"Admin",
                                       firstname:null,
                                       lastname:null,
                                       age:null,
@@ -39,7 +41,7 @@ const SignUp=()=>{
 
         if(isObjectEmpty(user)){
             alert('Enter all feilds');
-        }else if(user.password!==user.confirmPassword){
+        }else if(user.password !== user.confirmPassword){
             alert('Confirm password and password value should be same');
         }else{
 
@@ -165,6 +167,8 @@ const SignUp=()=>{
 
                     </select>
                 </div>
+
+
 
                 <center>
                 <button type="button" className="btn btn-primary" onClick={()=>signUpUser()}

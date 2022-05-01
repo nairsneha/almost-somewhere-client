@@ -1,6 +1,7 @@
 import React from "react";
 import { findImage } from "../../../actions/common-action";
 import { Rating } from "react-simple-star-rating";
+import "./review-item.css";
 
 const ReviewItem = ({
   reviewItem = {
@@ -14,9 +15,9 @@ const ReviewItem = ({
   return (
     <>
       <div className="card">
-        <div className="card-body">
-          <div className="row m-2">
-            <div className="col-md-2 ps-4">
+        <div className="card-body d-flex flex-column gap-2">
+          <div className="d-flex gap-4">
+            <div className="d-flex align-items-center">
               <img
                 src={
                   reviewItem.profilePhotoUrl
@@ -24,13 +25,12 @@ const ReviewItem = ({
                     : "https://www.pngitem.com/pimgs/m/30-307416_profile-icon-png-image-free-download-searchpng-employee.png"
                 }
                 alt={reviewItem.authorName}
-                style={{ height: "100px" }}
-                className="img rounded-circle img-fluid"
+                className="img rounded-circle img-fluid review-profile-avatar"
               />
             </div>
-            <div className="col-md-10">
-              <div className="m-2">
-                <h5>{reviewItem.authorName}</h5>
+            <div className="d-flex align-self-center align-items-start flex-column">
+              <div className="mx-1">
+                <h6>{reviewItem.authorName}</h6>
               </div>
               <div>
                 <Rating
@@ -40,11 +40,12 @@ const ReviewItem = ({
                   ratingValue={
                     (reviewItem.rating / 5) * 100
                   } /* Available Props */
+                  size="30"
                 />
               </div>
             </div>
           </div>
-          <div className="row p-2 m-2">
+          <div className="">
             <div>
               <p>{reviewItem.text}</p>
             </div>

@@ -1,0 +1,14 @@
+.loc-image {
+  object-fit: cover;
+  height: 250px;
+}
+
+.location-card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.carousel-cards {
+  gap: 1rem;
+}
