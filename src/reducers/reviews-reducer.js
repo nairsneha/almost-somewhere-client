@@ -1,21 +1,25 @@
-import reviews from "../data/reviews.json"
+// import reviews from "../data/reviews.json"
 
-const reviewsReducer = (state = reviews, action) => {
+import { FIND_REVIEWS_BY_PLACE, FIND_REVIEWS_BY_USER, 
+    CREATE_REVIEW, DELETE_REVIEW, UPDATE_REVIEW } from "../actions/review-action";
+
+const reviewsReducer = (state = [], action) => {
     switch (action.type) {
-    case 'create-review':
-        const newReview = {
-            _id: (new Date()).getTime() + '',
-            authorName: action.authorName,
-            // profilePhotoUrl: action.profilePhotoUrl,
-            text: action.text,
-            rating: action.rating,
-        }
-        return [
-            newReview,
-            ...state,
-          ];
-    default:
-        return reviews;
+        case CREATE_REVIEW:
+            return [action.newReview,
+                    ...state]
+        case DELETE_REVIEW:
+            return state;
+        case UPDATE_REVIEW:
+            return [action.updatedReview,
+                    ...state]
+        case FIND_REVIEWS_BY_PLACE:
+            console.log('hi',typeof action.reviews , action.reviews)
+            return Object.values(action.reviews)
+        case FIND_REVIEWS_BY_USER:
+            return action.reviews
+        default:
+            return state;
     }
 }
 

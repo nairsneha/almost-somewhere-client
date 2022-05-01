@@ -2,6 +2,7 @@ import React from "react";
 import { findImage } from "../../../actions/common-action";
 import { Rating } from "react-simple-star-rating";
 import "./review-item.css";
+import {useSelector} from "react-redux";
 
 const ReviewItem = ({
   reviewItem = {
@@ -12,6 +13,7 @@ const ReviewItem = ({
     text: "Huntington YMCA is a great place to do fitness activities. I recently joined a swimming class (beginner level) and loved it totally! Very clean swimming pool, great instructor, and staffs are friendly. I am going to enroll for another 8 weeks of swimming lessons in the new year (2022)!",
   },
 }) => {
+
   return (
     <>
       <div className="card">
@@ -29,8 +31,9 @@ const ReviewItem = ({
               />
             </div>
             <div className="d-flex align-self-center align-items-start flex-column">
+              <span className="float-end"><i class="fas fa-times"></i></span>
               <div className="mx-1">
-                <h6>{reviewItem.authorName}</h6>
+                <h6>{reviewItem.authorName || reviewItem.postedBy['username']}</h6>
               </div>
               <div>
                 <Rating
