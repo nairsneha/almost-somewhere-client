@@ -14,7 +14,7 @@ const nearbyPlaceReducer = (state = {
         case FIND_FAVOURITE_CAROUSEL:
             let newFavouritesCarousel = state.favouritesCarousel
                 .filter(obj => obj.type !== action.header && obj.type !== "");
-            newFavouritesCarousel.push({type: action.header, list: action.response.results});
+            newFavouritesCarousel = [{type: action.header, list: action.response.results},...newFavouritesCarousel];
             return {...state, favouritesCarousel: newFavouritesCarousel};
         default:
             return state;
