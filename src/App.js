@@ -18,6 +18,7 @@ import userReducer from "./reducers/user-details-reducer";
 import ProfileScreen from "./components/ProfileScreen";
 import EditProfileScreen from "./components/EditProfileScreen";
 import knownUsersReducer from "./reducers/known-users-reducer";
+import SearchResultScreen from "./components/SearchResultScreen";
 const reducer = combineReducers({
   nearByPlaces: nearbyPlaceReducer,
   placeDetail: placeDetailReducer,
@@ -35,6 +36,7 @@ function App() {
             <Route index element={<HomeScreen />} />
 
             <Route path="detail/:id" element={<DetailsScreen />} />
+            <Route path="place/search/:query" element={<SearchResultScreen />} />
 
             <Route path="profile">
               <Route index element={<ProfileScreen />} />

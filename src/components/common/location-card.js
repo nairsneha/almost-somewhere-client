@@ -1,5 +1,5 @@
 import React from "react";
-import { findImage } from "../../../actions/common-action";
+import { findImage } from "../../actions/common-action";
 import { Link } from "react-router-dom";
 import "./location-card.css";
 

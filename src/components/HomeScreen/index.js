@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import CardCarouselList from "./components/card-carousel-list";
-import LocationCardList from "./components/location-card-list";
+import LocationCardList from "../common/location-card-list";
 import {useDispatch, useSelector} from "react-redux";
 import {
     FIND_FAVOURITE_CAROUSEL,
