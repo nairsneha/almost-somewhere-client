@@ -1,5 +1,6 @@
 .loc-image {
   object-fit: cover;
+  height: 250px;
 }
 
 .location-card-title {
