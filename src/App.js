@@ -18,6 +18,7 @@ import userReducer from "./reducers/user-details-reducer";
 import ProfileScreen from "./components/ProfileScreen";
 import EditProfileScreen from "./components/EditProfileScreen";
 import knownUsersReducer from "./reducers/known-users-reducer";
+import RequireAuth from "./components/RequireAuth";
 
 const reducer = combineReducers({
   nearByPlaces: nearbyPlaceReducer,
@@ -36,12 +37,37 @@ function App() {
           <Route path="/" element={<AlmostSomewhere />}>
             <Route index element={<HomeScreen />} />
 
-            <Route path="detail/:id" element={<DetailsScreen />} />
+            <Route
+              path="detail/:id"
+              element={
+                <>
+                  <RequireAuth>
+                    <DetailsScreen />
+                  </RequireAuth>
+                </>
+              }
+            />
 
             <Route path="profile">
-              <Route index element={<ProfileScreen />} />
+              <Route
+                index
+                element={
+                  <>
+                    <RequireAuth>
+                      <ProfileScreen />
+                    </RequireAuth>
+                  </>
+                }
+              />
               <Route path=":username" element={<ProfileScreen />} />
-              <Route path="edit" element={<EditProfileScreen />} />
+              <Route
+                path="edit"
+                element={
+                  <RequireAuth>
+                    <EditProfileScreen />
+                  </RequireAuth>
+                }
+              />
             </Route>
           </Route>
 
