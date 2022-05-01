@@ -3,8 +3,11 @@ import { BsPencilFill } from 'react-icons/bs';
 import {useState} from "react";
 import {REACT_APP_API_BASE} from "../../config";
 import { useNavigate } from "react-router-dom";
+import {useDispatch} from "react-redux";
 const Login=()=>{
     const navigate = useNavigate();
+
+    const dispatch = useDispatch();
     const[user, setUser]=useState({
         username:null,
         password:null
@@ -23,7 +26,7 @@ const Login=()=>{
         if(isObjectEmpty(user)){
             alert('Enter all feilds');
         }else{
-            fetch(`${REACT_APP_API_BASE}/auth/login`,
+            fetch(`http://localhost:8081/auth/login`,
                   {
                       method: 'POST',
                       headers: { 'Content-Type': 'application/json' },
@@ -33,10 +36,29 @@ const Login=()=>{
                 .then(data =>{
                     alert(data.message);
                     if(data.status===200){
+
                         localStorage.setItem('allmostsomewhere-token', 'Bearer '+data.response.accessToken);
                         localStorage.setItem('allmostsomewhere-username',user.username);
                         localStorage.setItem('allmostsomewhere-isLoggedIn',true);
-                        navigate('/');
+                        console.log(data);
+                        console.log(user.username);
+                        fetch(`http://localhost:8081/user/${user.username}/bio`,
+                              {
+                                  method: 'GET',
+                                  headers: { 'Content-Type': 'application/json',
+                                      'authorization': 'Bearer '+data.response.accessToken},
+
+                              })
+                            .then(response1 => response1.json())
+                            .then((data1)=>{
+                              alert(data1);
+                               dispatch({
+                                             type: 'create-user',
+                                             user: data1.response
+                                         });
+                                console.log(data1);
+                                navigate('/');
+                            });
                     }
                 });
 
@@ -48,7 +70,7 @@ const Login=()=>{
 
     return (
         <>
-            <h1>Login <BsPencilFill />
+            <h1>Login
             </h1>
             <form>
                 <div className="form-group">

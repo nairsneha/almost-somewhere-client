@@ -10,9 +10,18 @@ import DetailsScreen from "./components/DetailsScreen"
 import SignUp from "./components/SignupScreen/index";
 import Login from "./components/LoginScreen/index"
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-
+import {Provider} from "react-redux";
+import {createStore, combineReducers} from "redux";
+import nearbyPlaceReducer  from "./reducers/nearby-place-reducer";
+import placeDetailReducer from "./reducers/place-detail-reducer";
+import reviewsReducer from "./reducers/reviews-reducer";
+import userReducer from "./reducers/user-details-reducer";
+// import NavBar from "./navBar/index.js";
+const reducer = combineReducers({nearByPlaces: nearbyPlaceReducer, placeDetail: placeDetailReducer, ourReviews: reviewsReducer,userStore:userReducer});
+const store = createStore(reducer);
 function App() {
        return (
+           <Provider store={store}>
          <BrowserRouter>
            <div className="container">
               <Routes>
@@ -33,6 +42,7 @@ function App() {
               </Routes>
            </div>
          </BrowserRouter>
+           </Provider>
        );
 }
       
