@@ -22,7 +22,7 @@ const Login = () => {
 
   const loginUser = () => {
     if (isObjectEmpty(user)) {
-      alert("Enter all feilds");
+      alert("Enter all fields");
     } else {
       const userDetails = api.loginUserSvc(user).then((data1) => {
         if (data1 !== undefined) {
@@ -44,7 +44,6 @@ const Login = () => {
         <h1>Login</h1>
         <form>
           <div className="form-group">
-            <label htmlFor="username">username</label>
             <input
               type="email"
               className="form-control"
@@ -60,8 +59,8 @@ const Login = () => {
               }
             />
           </div>
+          <p></p>
           <div className="form-group">
-            <label htmlFor="password">Password</label>
             <input
               type="password"
               className="form-control"
@@ -76,6 +75,7 @@ const Login = () => {
               }
             />
           </div>
+          <p></p>
           <center>
             <button
               type="button"

@@ -177,8 +177,7 @@ const SignUp=()=>{
                     </select>
                 </div>
 
-
-
+                <p></p>
                 <center>
                 <button type="button" className="btn btn-primary" onClick={()=>signUpUser()}
                         style={{display:'inline-block'}}>Submit</button>
