@@ -3,7 +3,6 @@ import './App.css';
 // import './vendors/bootstrap/css/bootstrap.min.css';
 // import './vendors/bootstrap/js/bootstrap.bundle.min';
 import './vendors/bootstrap-theme/bootstrap.min.css';
-import './vendors/fontawesome/css/all.min.css';
 import AlmostSomewhere from './components';
 import HomeScreen from "./components/HomeScreen"
 import DetailsScreen from "./components/DetailsScreen"
@@ -16,7 +15,8 @@ import nearbyPlaceReducer  from "./reducers/nearby-place-reducer";
 import placeDetailReducer from "./reducers/place-detail-reducer";
 import reviewsReducer from "./reducers/reviews-reducer";
 import userReducer from "./reducers/user-details-reducer";
-// import NavBar from "./navBar/index.js";
+import ProfileScreen from "./components/ProfileScreen";
+import EditProfileScreen from "./components/EditProfileScreen";
 const reducer = combineReducers({nearByPlaces: nearbyPlaceReducer, placeDetail: placeDetailReducer, ourReviews: reviewsReducer,userStore:userReducer});
 const store = createStore(reducer);
 function App() {
@@ -25,13 +25,18 @@ function App() {
          <BrowserRouter>
 
               <Routes>
-                     <Route path="/"
-                        element={<AlmostSomewhere/>}>
-                        <Route index
-                              element={<HomeScreen/>}/>
-                        <Route path="detail/:id"
-                        element={<DetailsScreen/>}/>
-                     </Route>
+                  <Route path="/" element={<AlmostSomewhere />}>
+
+                      <Route index element={<HomeScreen />} />
+
+                      <Route path="detail/:id" element={<DetailsScreen />} />
+
+                      <Route path="profile">
+                          <Route index element={<ProfileScreen />} />
+                          <Route path=":username" element={<ProfileScreen />} />
+                          <Route path="edit" element={<EditProfileScreen />} />
+                      </Route>
+                  </Route>
 
                   <Route path="/signup"
                          element={<SignUp/>} />
