@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import api from '../../services/user-service'
+import logo from '../../logo.png'
 import {Link, useNavigate} from "react-router-dom";
 const SignUp=()=>{
     const navigate = useNavigate();
@@ -51,10 +52,15 @@ const SignUp=()=>{
 
     }
     return (
-        <>  <br/>
+        <>
             <div className="container">
-                <h1>Sign Up
-            </h1>
+                <img
+                    src={logo}
+                    width="250"
+                    height="90"
+                    className="d-inline-block align-top"
+                    alt=""
+                />
             <form>
                 <div className="form-group">
                     <label style={{fontWeight: 'bold'}}>Enter details:</label>

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import api from "../../services/user-service";
+import logo from "../../logo.png";
 const Login = () => {
   const navigate = useNavigate();
 
@@ -41,7 +42,13 @@ const Login = () => {
     <>
       <br />
       <div className="container">
-        <h1>Login</h1>
+        <img
+            src={logo}
+            width="250"
+            height="90"
+            className="d-inline-block align-top"
+            alt=""
+        />
         <form>
           <div className="form-group">
             <input
