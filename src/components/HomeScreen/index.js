@@ -4,9 +4,7 @@ import LocationCardList from "./components/location-card-list";
 import {useDispatch, useSelector} from "react-redux";
 import {
     FIND_FAVOURITE_CAROUSEL,
-    FIND_GYM_PLACES,
     FIND_RECENT_PLACES,
-    FIND_RESTAURANT_PLACES,
     findPlaces
 } from "../../actions/nearby-places-action";
 
