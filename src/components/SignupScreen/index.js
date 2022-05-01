@@ -40,7 +40,7 @@ const SignUp=()=>{
     const signUpUser =() =>{
 
         if(isObjectEmpty(user)){
-            alert('Enter all feilds');
+            alert('Enter all fields');
         }else if(user.password !== user.confirmPassword){
             alert('Confirm password and password value should be same');
         }else{
@@ -51,13 +51,13 @@ const SignUp=()=>{
 
     }
     return (
-        <>  <br />
+        <>  <br/>
             <div className="container">
                 <h1>Sign Up
             </h1>
             <form>
                 <div className="form-group">
-                    <label htmlFor="first-name">First Name</label>
+                    <label style={{fontWeight: 'bold'}}>Enter details:</label>
                     <input type="text" className="form-control" id="first-name"
                            aria-describedby="emailHelp" placeholder="Enter first name"
                            name="first-name" onChange={(e)=>setUser({
@@ -65,8 +65,9 @@ const SignUp=()=>{
                         firstname:e.target.value
                                                                     })}/>
                 </div>
+                <p></p>
                 <div className="form-group">
-                    <label htmlFor="last-name">Last Name</label>
+                    {/*<label htmlFor="last-name">Last Name</label>*/}
                     <input type="text" className="form-control" id="last-name"
                            aria-describedby="emailHelp" placeholder="Enter last name"
                            name="last-name"
@@ -76,9 +77,10 @@ const SignUp=()=>{
                                                   })}
                     />
                 </div>
+                <p></p>
 
                 <div className="form-group">
-                    <label htmlFor="age">Age</label>
+                    {/*<label htmlFor="age">Age</label>*/}
                     <input type="text" className="form-control" id="age"
                            aria-describedby="emailHelp" placeholder="Enter age"
                            name="age"
@@ -87,9 +89,10 @@ const SignUp=()=>{
                                                       age:e.target.value
                                                   })}/>
                 </div>
+                <p></p>
 
                 <div className="form-group">
-                    <label htmlFor="username">Username</label>
+                    {/*<label htmlFor="username">Username</label>*/}
                     <input type="email" className="form-control" id="username"
                            aria-describedby="emailHelp" placeholder="Enter username"
                            name="username"
@@ -98,8 +101,10 @@ const SignUp=()=>{
                                                       username:e.target.value
                                                   })}/>
                 </div>
+                <p></p>
+
                 <div className="form-group">
-                    <label htmlFor="password">Password</label>
+                    {/*<label htmlFor="password">Password</label>*/}
                     <input type="password" className="form-control" id="password"
                            placeholder="Password" name="password"
                            onChange={(e)=>setUser({
@@ -107,19 +112,21 @@ const SignUp=()=>{
                                                       password:e.target.value
                                                   })}/>
                 </div>
+                <p></p>
 
                 <div className="form-group">
-                    <label htmlFor="confirm-password">Confirm Password</label>
+                    {/*<label htmlFor="confirm-password">Confirm Password</label>*/}
                     <input type="password" className="form-control" id="confirm-password"
-                           placeholder="Password" name="confirm-password"
+                           placeholder="Confirm password" name="confirm-password"
                            onChange={(e)=>setUser({
                                                       ...user,
                                                       confirmPassword:e.target.value
                                                   })}/>
                 </div>
+                <p></p>
 
                 <div className="form-group">
-                    <label htmlFor="user-type">Select User Type</label>
+                    <label htmlFor="user-type" style={{fontWeight: 'bold'}}>Select User Type:</label>
                     <select className="form-control" id="user-type" name="user-type"
 
                             onChange={(e)=>setUser({
@@ -131,9 +138,10 @@ const SignUp=()=>{
                         <option value="Customer">Moderator</option>
                     </select>
                 </div>
+                <p></p>
 
                 <div className="form-group">
-                    <label htmlFor="user-type">Gender</label>
+                    <label htmlFor="user-type" style={{fontWeight: 'bold'}}>Gender:</label>
                     <select className="form-control" id="gender" name="gender"
 
                             onChange={(e)=>setUser({
@@ -144,9 +152,10 @@ const SignUp=()=>{
                         <option value="Female">Female</option>
                     </select>
                 </div>
+                <p></p>
 
                 <div className="form-group">
-                    <label htmlFor="favourites">Favourites</label>
+                    <label htmlFor="favourites" style={{fontWeight: 'bold'}}>Favourites:</label>
                     <select multiple className="form-control" id="favourites" name='favourites'
                             onChange={(e)=>selectMultipleValuesFromFavourites(e)}>
 
