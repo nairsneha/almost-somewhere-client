@@ -2,6 +2,7 @@ import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Card from "./location-card";
+import "./location-card.css";
 
 const CardCarouselList = ({
   title = "Title",
@@ -47,15 +48,10 @@ const CardCarouselList = ({
       <div>
         <span className="fs-2 fw-light">{title}</span>
       </div>
-      <Carousel
-        responsive={responsive}
-        autoPlaySpeed={3000}
-        infinite
-        itemClass="carousel-item-padding-40-px"
-      >
+      <Carousel responsive={responsive} autoPlaySpeed={3000} infinite>
         {filteredLocation.map((item) => {
           return (
-            <div key={new Date().getTime() + ""} className="pe-5">
+            <div key={new Date().getTime() + ""} className="pe-4">
               <Card locDetail={item} />
             </div>
           );

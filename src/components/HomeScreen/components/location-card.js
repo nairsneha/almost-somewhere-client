@@ -19,7 +19,7 @@ const LocationCard = ({
     <>
       <div className="col">
         <Link className="" to={"/detail/" + locDetail.place_id}>
-          <div className="card h-100">
+          <div className="card location-card">
             <img
               src={
                 locDetail.photos && locDetail.photos.length > 0
@@ -30,7 +30,9 @@ const LocationCard = ({
               alt={locDetail.name}
             />
             <div className="card-body">
-              <h5 className="card-title">{locDetail.name}</h5>
+              <h5 className="card-title location-card-title">
+                {locDetail.name}
+              </h5>
               {locDetail.description && (
                 <p className="card-text">{locDetail.description}</p>
               )}

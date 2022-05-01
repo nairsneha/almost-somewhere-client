@@ -5,7 +5,7 @@ const AlmostSomewhere = () => {
   return (
     <>
       <NavBar />
-      <div className="container">
+      <div className="container my-2">
         <div>
           <Outlet />
         </div>
