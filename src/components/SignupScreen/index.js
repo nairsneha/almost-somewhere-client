@@ -1,7 +1,6 @@
 import React, {useState} from "react";
-import { BsPencilFill } from 'react-icons/bs';
-import { REACT_APP_API_BASE } from "../../config";
-import { useNavigate } from "react-router-dom";
+import api from '../../services/user-service'
+import {Link, useNavigate} from "react-router-dom";
 const SignUp=()=>{
     const navigate = useNavigate();
     const[user, setUser]=useState({userType:"Admin",
@@ -43,47 +42,16 @@ const SignUp=()=>{
         }else if(user.password!==user.confirmPassword){
             alert('Confirm password and password value should be same');
         }else{
-            fetch(`${REACT_APP_API_BASE}auth/signup`,
-                  {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify(user)
-                  })
-                .then(response =>response.json())
-                .then(data =>{
-                    if(data.status===200){
-                        fetch(`${REACT_APP_API_BASE}/bio`,
-                              {
-                                  method: 'POST',
-                                  headers: { 'Content-Type': 'application/json' },
-                                  body: JSON.stringify(user)
-                              })
-                            .then(response =>response.json())
-                            .then(data =>{
-                                if(data.status===200){
-                                    alert('Your have registered successfully')
-                                    navigate('/login');
-                                }
-                            });
-                    }else{
-                        alert(data.message);
-                    }
-                });
 
-     /*      */
-///bio
-            //make api call to register the user
-            //alert('user is registered')
-            //redirect to login
-       //
-
-
+            api.signUpUserSvc(user);
+            navigate('/login');
         }
 
     }
     return (
-        <>
-            <h1>Sign Up <BsPencilFill />
+        <>  <br />
+            <div className="container">
+                <h1>Sign Up
             </h1>
             <form>
                 <div className="form-group">
@@ -198,9 +166,15 @@ const SignUp=()=>{
                     </select>
                 </div>
 
-
-                <button type="button" className="btn btn-primary" onClick={()=>signUpUser()}>Submit</button>
+                <center>
+                <button type="button" className="btn btn-primary" onClick={()=>signUpUser()}
+                        style={{display:'inline-block'}}>Submit</button>
+                &nbsp;&nbsp;<Link to='/login' style={{display:'inline-block'}}>
+                <p> Already a User?</p>
+            </Link>
+            </center>
             </form>
+            </div>
         </>
 
     );

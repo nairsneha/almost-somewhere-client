@@ -1,9 +1,9 @@
 import React from "react";
-import { BsPencilFill } from 'react-icons/bs';
 import {useState} from "react";
-import {REACT_APP_API_BASE} from "../../config";
 import { useNavigate } from "react-router-dom";
 import {useDispatch} from "react-redux";
+import {Link} from "react-router-dom";
+import api from '../../services/user-service'
 const Login=()=>{
     const navigate = useNavigate();
 
@@ -26,50 +26,28 @@ const Login=()=>{
         if(isObjectEmpty(user)){
             alert('Enter all feilds');
         }else{
-            fetch(`http://localhost:8081/auth/login`,
-                  {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify(user)
-                  })
-                .then(response =>response.json())
-                .then(data =>{
-                    alert(data.message);
-                    if(data.status===200){
 
-                        localStorage.setItem('allmostsomewhere-token', 'Bearer '+data.response.accessToken);
-                        localStorage.setItem('allmostsomewhere-username',user.username);
-                        localStorage.setItem('allmostsomewhere-isLoggedIn',true);
-                        console.log(data);
-                        console.log(user.username);
-                        fetch(`http://localhost:8081/user/${user.username}/bio`,
-                              {
-                                  method: 'GET',
-                                  headers: { 'Content-Type': 'application/json',
-                                      'authorization': 'Bearer '+data.response.accessToken},
+           const userDetails= api.loginUserSvc(user)
+               .then((data1)=>{
+                   if(data1!==undefined){
+                       alert('Login successful');
+                       dispatch({
+                                    type: 'create-user',
+                                    user: data1.response
+                                });
+                       navigate('/');
+                   }
+               })
 
-                              })
-                            .then(response1 => response1.json())
-                            .then((data1)=>{
-                              alert(data1);
-                               dispatch({
-                                             type: 'create-user',
-                                             user: data1.response
-                                         });
-                                console.log(data1);
-                                navigate('/');
-                            });
-                    }
-                });
-
-
-        }
+              }
 
     }
 
 
     return (
         <>
+            <br />
+            <div className="container">
             <h1>Login
             </h1>
             <form>
@@ -90,9 +68,17 @@ const Login=()=>{
                                                                                              password:e.target.value
                                                                                          })}/>
                 </div>
+<center>
 
-                <button type="button" className="btn btn-primary" onClick={(e)=>loginUser()}>Submit</button>
+
+                <button type="button" className="btn btn-primary" onClick={(e)=>loginUser()}
+                style={{display:'inline-block'}}>Submit</button>
+    &nbsp;&nbsp;<Link to='/signup' style={{display:'inline-block'}}>
+                    <p> Register as  User?</p>
+                </Link>
+</center>
             </form>
+            </div>
         </>
 
     );

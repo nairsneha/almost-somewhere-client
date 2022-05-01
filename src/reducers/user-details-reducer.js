@@ -1,12 +1,12 @@
 import React from "react";
-const userReducer = (state = reviews, action) => {
+const userReducer = (state = {}, action) => {
     switch (action.type) {
         case 'create-user':
             console.log('I am in reducer');
             console.log(action.user);
-            return {...action.user};
+            return {...state,...action.user};
         default:
-            return {};
+            return state;
     }
 }
 

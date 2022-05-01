@@ -23,7 +23,7 @@ function App() {
        return (
            <Provider store={store}>
          <BrowserRouter>
-           <div className="container">
+
               <Routes>
                      <Route path="/"
                         element={<AlmostSomewhere/>}>
@@ -40,7 +40,6 @@ function App() {
                          element={<Login/>} />
 
               </Routes>
-           </div>
          </BrowserRouter>
            </Provider>
        );
