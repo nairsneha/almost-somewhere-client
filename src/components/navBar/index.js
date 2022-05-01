@@ -30,7 +30,7 @@ const NavBar = () => {
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
-                        {isLoggedIn===undefined?<>
+                        {isLoggedIn===null?<>
                             <li className="nav-item">
                                 <Link to='/signup' style={{ textDecoration: 'none' }}>
                                 <a className="nav-link" >Sign Up</a>
