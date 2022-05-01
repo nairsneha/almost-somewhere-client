@@ -1,20 +1,17 @@
 import React from "react";
-import { Outlet } from "react-router-dom"
-import NavBar from './navBar/index.js'
+import { Outlet } from "react-router-dom";
+import NavBar from "./navBar/index.js";
 const AlmostSomewhere = () => {
-
-    return(<>
-        {<NavBar />}
-            <div>
-                <div>
-                    <Outlet/>
-                </div>
-                <div>
-                    <h1>Footer</h1>
-                </div>
-            </div>
-        </>
-    )
-}
+  return (
+    <>
+      <NavBar />
+      <div className="container">
+        <div>
+          <Outlet />
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default AlmostSomewhere;
