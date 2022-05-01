@@ -17,5 +17,24 @@ export const getUserBio = async (username) => {
     return response?.data?.response;
   }
 
-  return {};
+  return null;
+};
+
+export const updateUserBio = async (user) => {
+  const baseUrl = `${REACT_APP_API_BASE}/user/${user?.username}/bio`;
+
+  const headers = {};
+  const token = localStorage.getItem("allmostsomewhere-token");
+
+  if (token) {
+    headers["Authorization"] = token;
+  }
+
+  const response = await axios.put(baseUrl, user, { headers });
+
+  if (response?.data?.isOk) {
+    return response?.data?.response;
+  }
+
+  return null;
 };

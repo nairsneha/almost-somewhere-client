@@ -12,7 +12,7 @@ const Profile = ({ profile, isSelf }) => {
     <>
       <img
         src={
-          profile.bannerPicUrl ||
+          profile.bannerPhotoURL ||
           "https://pbs.twimg.com/media/D-jnKUPU4AE3hVR.jpg"
         }
         alt={profile.username}
@@ -23,7 +23,7 @@ const Profile = ({ profile, isSelf }) => {
           <div className="wd-profile-picture-container">
             <img
               src={
-                profile.profilePicUrl ||
+                profile.profilePhotoURL ||
                 "https://hips.hearstapps.com/digitalspyuk.cdnds.net/17/13/1490989105-twitter1.jpg?resize=480:*"
               }
               alt={profile.username}

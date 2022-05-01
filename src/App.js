@@ -1,7 +1,5 @@
 import React from "react";
 import "./App.css";
-// import './vendors/bootstrap/css/bootstrap.min.css';
-// import './vendors/bootstrap/js/bootstrap.bundle.min';
 import "./vendors/bootstrap-theme/bootstrap.min.css";
 import AlmostSomewhere from "./components";
 import HomeScreen from "./components/HomeScreen";
@@ -9,7 +7,7 @@ import DetailsScreen from "./components/DetailsScreen";
 import SignUp from "./components/SignupScreen/index";
 import Login from "./components/LoginScreen/index";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Provider, useDispatch } from "react-redux";
+import { Provider } from "react-redux";
 import { createStore, combineReducers } from "redux";
 import nearbyPlaceReducer from "./reducers/nearby-place-reducer";
 import placeDetailReducer from "./reducers/place-detail-reducer";

@@ -14,6 +14,9 @@ const Login = () => {
     password: null,
   });
 
+  // TODO: redirect to last page if logged in
+  // TODO: redirect to 'from' after loging in.
+
   function isObjectEmpty(obj) {
     for (var key in obj) {
       if (obj[key] === null || obj[key] === "") return true;

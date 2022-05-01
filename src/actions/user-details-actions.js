@@ -1,4 +1,4 @@
-import { getUserBio } from "../services/user-bio-service";
+import { getUserBio, updateUserBio } from "../services/user-bio-service";
 import api from "../services/user-service";
 
 export const CREATE_USER = "create-user";
@@ -29,4 +29,15 @@ export const logoutUser = async (dispatch) => {
   dispatch({
     type: DELETE_USER,
   });
+};
+
+export const updateUser = async (dispatch, user) => {
+  const updatedUser = await updateUserBio(user);
+
+  if (updatedUser) {
+    dispatch({
+      type: CREATE_USER,
+      user: updatedUser,
+    });
+  }
 };
