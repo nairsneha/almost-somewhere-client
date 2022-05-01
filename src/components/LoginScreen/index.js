@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { loginUser as login } from "../../actions/user-details-actions";
 import api from "../../services/user-service";
 const Login = () => {
   const navigate = useNavigate();
@@ -24,16 +25,8 @@ const Login = () => {
     if (isObjectEmpty(user)) {
       alert("Enter all feilds");
     } else {
-      const userDetails = api.loginUserSvc(user).then((data1) => {
-        if (data1 !== undefined) {
-          alert("Login successful");
-          dispatch({
-            type: "create-user",
-            user: data1.response,
-          });
-          navigate("/");
-        }
-      });
+      login(dispatch, user);
+      navigate("/");
     }
   };
 

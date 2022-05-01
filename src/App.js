@@ -9,7 +9,7 @@ import DetailsScreen from "./components/DetailsScreen";
 import SignUp from "./components/SignupScreen/index";
 import Login from "./components/LoginScreen/index";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import { createStore, combineReducers } from "redux";
 import nearbyPlaceReducer from "./reducers/nearby-place-reducer";
 import placeDetailReducer from "./reducers/place-detail-reducer";
@@ -18,6 +18,7 @@ import userReducer from "./reducers/user-details-reducer";
 import ProfileScreen from "./components/ProfileScreen";
 import EditProfileScreen from "./components/EditProfileScreen";
 import knownUsersReducer from "./reducers/known-users-reducer";
+
 const reducer = combineReducers({
   nearByPlaces: nearbyPlaceReducer,
   placeDetail: placeDetailReducer,
@@ -26,6 +27,7 @@ const reducer = combineReducers({
   knownUsers: knownUsersReducer,
 });
 const store = createStore(reducer);
+
 function App() {
   return (
     <Provider store={store}>
@@ -44,7 +46,6 @@ function App() {
           </Route>
 
           <Route path="/signup" element={<SignUp />} />
-
           <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>

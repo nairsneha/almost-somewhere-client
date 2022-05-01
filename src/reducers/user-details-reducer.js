@@ -1,14 +1,14 @@
-import React from "react";
+import { CREATE_USER, DELETE_USER } from "../actions/user-details-actions";
+
 const userReducer = (state = {}, action) => {
-    switch (action.type) {
-        case 'create-user':
-            console.log('I am in reducer');
-            console.log(action.user);
-            return {...state,...action.user};
-        default:
-            return state;
-    }
-}
+  switch (action.type) {
+    case CREATE_USER:
+      return { ...action.user };
+    case DELETE_USER:
+      return {};
+    default:
+      return state;
+  }
+};
 
 export default userReducer;
-

@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { logoutUser } from "../../actions/user-details-actions";
 const NavBar = () => {
   const navigate = useNavigate();
+  const user = useSelector((state) => state.userStore);
+  const dispatch = useDispatch();
+
   const logout = () => {
-    localStorage.removeItem("allmostsomewhere-isLoggedIn");
-    localStorage.removeItem("allmostsomewhere-username");
-    localStorage.removeItem("allmostsomewhere-token");
-    navigate("/login");
+    logoutUser(dispatch);
+    navigate("/");
   };
-  const isLoggedIn = localStorage.getItem("allmostsomewhere-isLoggedIn");
-  const username = localStorage.getItem("allmostsomewhere-username");
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
@@ -38,7 +40,24 @@ const NavBar = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              {isLoggedIn === null ? (
+              {user?.username ? (
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/profile">
+                      Welcome, {user?.firstname}!
+                    </Link>
+                  </li>
+                  <li
+                    className="nav-item"
+                    style={{ textDecoration: "none" }}
+                    onClick={() => logout()}
+                  >
+                    <span className="nav-link" href="#">
+                      Logout
+                    </span>
+                  </li>
+                </>
+              ) : (
                 <>
                   <li className="nav-item">
                     <Link to="/signup" style={{ textDecoration: "none" }}>
@@ -49,23 +68,6 @@ const NavBar = () => {
                     <Link to="/login" style={{ textDecoration: "none" }}>
                       <span className="nav-link">Login</span>
                     </Link>
-                  </li>
-                </>
-              ) : (
-                <>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/profile">
-                      Welcome, {username}!
-                    </Link>
-                  </li>
-                  <li
-                    className="nav-item"
-                    style={{ textDecoration: "none" }}
-                    onClick={() => logout()}
-                  >
-                    <a className="nav-link" href="#">
-                      Logout
-                    </a>
                   </li>
                 </>
               )}
