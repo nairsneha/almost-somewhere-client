@@ -17,29 +17,25 @@ const LocationCard = ({
 }) => {
   return (
     <>
-      <div className="col">
-        <Link className="" to={"/detail/" + locDetail.place_id}>
-          <div className="card location-card">
-            <img
-              src={
-                locDetail.photos && locDetail.photos.length > 0
-                  ? findImage(locDetail.photos[0]["photo_reference"])
-                  : ""
-              }
-              className="card-img-top loc-image"
-              alt={locDetail.name}
-            />
-            <div className="card-body">
-              <h5 className="card-title location-card-title">
-                {locDetail.name}
-              </h5>
-              {locDetail.description && (
-                <p className="card-text">{locDetail.description}</p>
-              )}
-            </div>
+      <Link className="col" to={"/detail/" + locDetail.place_id}>
+        <div className="card location-card">
+          <img
+            src={
+              locDetail.photos && locDetail.photos.length > 0
+                ? findImage(locDetail.photos[0]["photo_reference"])
+                : ""
+            }
+            className="card-img-top loc-image"
+            alt={locDetail.name}
+          />
+          <div className="card-body">
+            <h5 className="card-title location-card-title">{locDetail.name}</h5>
+            {locDetail.description && (
+              <p className="card-text">{locDetail.description}</p>
+            )}
           </div>
-        </Link>
-      </div>
+        </div>
+      </Link>
     </>
   );
 };

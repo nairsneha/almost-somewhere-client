@@ -45,8 +45,8 @@ const CardCarouselList = ({
   );
   return (
     <>
-      <div>
-        <span className="fs-2 fw-light">{title}</span>
+      <div className="my-2">
+        <h3>{title}</h3>
       </div>
       <Carousel responsive={responsive} autoPlaySpeed={3000} infinite>
         {filteredLocation.map((item) => {

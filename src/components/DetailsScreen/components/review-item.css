@@ -1,0 +1,5 @@
+.review-profile-avatar {
+  object-fit: cover;
+  height: 96px;
+  width: 96px;
+}

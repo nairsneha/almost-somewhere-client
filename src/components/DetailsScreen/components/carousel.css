@@ -1,4 +1,8 @@
-.left-corner{
-    margin-left: 50px;
-    margin-top: -120px;
+.left-corner {
+  margin-left: 50px;
+  margin-top: -120px;
+}
+
+.details-carousel-img {
+  object-fit: cover;
 }
