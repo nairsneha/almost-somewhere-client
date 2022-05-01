@@ -3,40 +3,40 @@ import CardCarouselList from "./components/card-carousel-list";
 import LocationCardList from "./components/location-card-list";
 import {useDispatch, useSelector} from "react-redux";
 import {
+    FIND_FAVOURITE_CAROUSEL,
     FIND_GYM_PLACES,
     FIND_RECENT_PLACES,
     FIND_RESTAURANT_PLACES,
     findPlaces
 } from "../../actions/nearby-places-action";
 
+const defaultFavoritesList = ["restaurant", "gym"];
 const HomeScreen = () => {
     const dispatcher = useDispatch();
     const data = useSelector(({nearByPlaces}) => nearByPlaces);
+    const favoritesFromReducer = useSelector(({userStore}) => userStore).favorites;
+
     const findNearByPlaces = () => {
         findRecentCards();
-        findGymCards();
-        findRestaurantCards();
+        findFavouriteCarousal();
+    }
+
+    const findFavouriteCarousal = () => {
+        const favouriteList = favoritesFromReducer === undefined ? defaultFavoritesList : favoritesFromReducer;
+        favouriteList.map((fav) => {
+            let params = {type: fav};
+            findPlaces(dispatcher, FIND_FAVOURITE_CAROUSEL, params);
+        })
     }
     const findRecentCards = () => {
         findPlaces(dispatcher, FIND_RECENT_PLACES, {});
     }
-    const findRestaurantCards = () => {
-        let params = {type: "restaurant"};
-        findPlaces(dispatcher, FIND_RESTAURANT_PLACES, params);
-    }
-    const findGymCards = () => {
-        let params = {type: "gym"};
-        findPlaces(dispatcher, FIND_GYM_PLACES, params);
-    }
-
-
     useEffect(() => findNearByPlaces(), []);
 
     return (
         <div>
             <LocationCardList locDetails={data.recentPlaces.results}/>
-            <CardCarouselList title="Restaurant" locDetails={data.restaurantPlaces.results}/>
-            <CardCarouselList title="Gym" locDetails={data.gymPlaces.results}/>
+            {data.favouritesCarousel.map((fav) => <CardCarouselList key={fav.type} title={fav.type} locDetails={fav.list}/>)}
         </div>
     )
 }
