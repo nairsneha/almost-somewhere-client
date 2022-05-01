@@ -83,8 +83,8 @@ const Profile = ({ profile, isSelf }) => {
           </li>
         </ul>
         {currentTab === 1 && <ProfileReviewList username={profile.username} />}
-        {currentTab === 2 && <FollowList usernameList={[1, 2, 3]} />}
-        {currentTab === 3 && <FollowList usernameList={[1, 2, 3]} />}
+        {currentTab === 2 && <FollowList usernameList={profile.followers} />}
+        {currentTab === 3 && <FollowList usernameList={profile.following} />}
       </div>
     </>
   );
