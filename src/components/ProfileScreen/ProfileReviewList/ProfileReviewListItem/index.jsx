@@ -18,7 +18,7 @@ const ProfileReviewListItem = ({ profileReview }) => {
                     className="place-link"
                     to={`/detail/${profileReview.placeId}`}
                   >
-                    {profileReview.placeName}
+                    {profileReview.placeId}
                   </Link>
                 </h5>
               </div>

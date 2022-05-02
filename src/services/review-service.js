@@ -1,5 +1,5 @@
 // import dummyReviews from "../data/profile-reviews.json";
-import axios from 'axios';
+import axios from "axios";
 import { REACT_APP_API_BASE } from "../config";
 
 const GET_PLACE_REVIEWS_API = `${REACT_APP_API_BASE}/reviews/places`;
@@ -25,9 +25,9 @@ export const createReview = async (review) => {
   if (token) {
     headers["Authorization"] = token;
   }
-  const response = await axios.post(`${ADD_REVIEW_API}`, review, { headers })
-  return response.data;
- }
+  const response = await axios.post(`${ADD_REVIEW_API}`, review, { headers });
+  return response.data.response;
+};
 
 export const deleteReview = async (placeId, username) => {
   const headers = {};
@@ -36,10 +36,12 @@ export const deleteReview = async (placeId, username) => {
   if (token) {
     headers["Authorization"] = token;
   }
-  const response = await axios
-    .delete(`${DELETE_REVIEW_API}/${username}/${placeId}`, {headers});
+  const response = await axios.delete(
+    `${DELETE_REVIEW_API}/${username}/${placeId}`,
+    { headers }
+  );
   return response.data;
- }
+};
 
 //  export const updateReview = async (placeId, review) => {
 //   const response = await axios

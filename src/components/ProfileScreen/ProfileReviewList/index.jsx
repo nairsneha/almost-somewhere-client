@@ -11,8 +11,7 @@ const ProfileReviewList = ({ username }) => {
     const getReviewsHandler = async () => {
       if (profileReviews.length === 0) {
         const reviews = await getReviewsByUser(username);
-        console.log(reviews);
-        setProfileReviews(reviews);
+        setProfileReviews(Object.values(reviews));
       }
     };
     getReviewsHandler();
@@ -20,10 +19,9 @@ const ProfileReviewList = ({ username }) => {
 
   return (
     <>
-      {profileReviews?.length &&
-        profileReviews.map((profileReview, idx) => (
-          <ProfileReviewListItem key={idx} profileReview={profileReview} />
-        ))}
+      {profileReviews.map((profileReview, idx) => (
+        <ProfileReviewListItem key={idx} profileReview={profileReview} />
+      ))}
     </>
   );
 };
