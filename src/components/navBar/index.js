@@ -5,12 +5,16 @@ import logo from '../../logo.png'
 
 const NavBar = () => {
   const navigate = useNavigate();
+  const [searchQuery,updateQuery] = useState("");
   const logout = () => {
     localStorage.removeItem("allmostsomewhere-isLoggedIn");
     localStorage.removeItem("allmostsomewhere-username");
     localStorage.removeItem("allmostsomewhere-token");
     navigate("/login");
   };
+  const handleUpdateQuery = (val) => {
+    updateQuery(val);
+  }
   const isLoggedIn = localStorage.getItem("allmostsomewhere-isLoggedIn");
   const username = localStorage.getItem("allmostsomewhere-username");
   return (
@@ -28,7 +32,7 @@ const NavBar = () => {
 
           </Link>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -36,18 +40,20 @@ const NavBar = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
 
             <form className="form-inline">
               <div className="input-group">
-                <input type="text" className="form-control" size="80" />
+                <input type="text" value={searchQuery} onChange={event => handleUpdateQuery(event.target.value)} className="form-control" size="80" />
                 <span className="input-group-btn">
                   &nbsp;{" "}
+                  <Link className="col" to={`/place/search/${searchQuery}`}>
                   <button className="btn btn-primary" type="button">
                     Search
                   </button>
+                  </Link>
                 </span>
               </div>
             </form>

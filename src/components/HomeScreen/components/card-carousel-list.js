@@ -1,7 +1,7 @@
 import React from "react";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import Card from "./location-card";
+import Card from "../../common/location-card";
 
 const CardCarouselList = ({
                               title="title",locDetails = [
