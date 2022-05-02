@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { loginUser as login } from "../../actions/user-details-actions";
 import api from "../../services/user-service";
 import logo from "../../logo.png";
 const Login = () => {
@@ -13,6 +14,9 @@ const Login = () => {
     username: null,
     password: null,
   });
+
+  // TODO: redirect to last page if logged in
+  // TODO: redirect to 'from' after loging in.
 
   function isObjectEmpty(obj) {
     for (var key in obj) {
@@ -25,16 +29,8 @@ const Login = () => {
     if (isObjectEmpty(user)) {
       alert("Enter all fields");
     } else {
-      const userDetails = api.loginUserSvc(user).then((data1) => {
-        if (data1 !== undefined) {
-          alert("Login successful");
-          dispatch({
-            type: "create-user",
-            user: data1.response,
-          });
-          navigate("/");
-        }
-      });
+      login(dispatch, user);
+      navigate("/");
     }
   };
 

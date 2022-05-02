@@ -1,7 +1,5 @@
 import React from "react";
 import "./App.css";
-// import './vendors/bootstrap/css/bootstrap.min.css';
-// import './vendors/bootstrap/js/bootstrap.bundle.min';
 import "./vendors/bootstrap-theme/bootstrap.min.css";
 import AlmostSomewhere from "./components";
 import HomeScreen from "./components/HomeScreen";
@@ -18,7 +16,9 @@ import userReducer from "./reducers/user-details-reducer";
 import ProfileScreen from "./components/ProfileScreen";
 import EditProfileScreen from "./components/EditProfileScreen";
 import knownUsersReducer from "./reducers/known-users-reducer";
+import RequireAuth from "./components/RequireAuth";
 import SearchResultScreen from "./components/SearchResultScreen";
+
 const reducer = combineReducers({
   nearByPlaces: nearbyPlaceReducer,
   placeDetail: placeDetailReducer,
@@ -27,6 +27,7 @@ const reducer = combineReducers({
   knownUsers: knownUsersReducer,
 });
 const store = createStore(reducer);
+
 function App() {
   return (
     <Provider store={store}>
@@ -34,19 +35,51 @@ function App() {
         <Routes>
           <Route path="/" element={<AlmostSomewhere />}>
             <Route index element={<HomeScreen />} />
-
-            <Route path="detail/:id" element={<DetailsScreen />} />
-            <Route path="place/search/:query" element={<SearchResultScreen />} />
-
+            <Route
+              path="detail/:id"
+              element={
+                <>
+                  <RequireAuth>
+                    <DetailsScreen />
+                  </RequireAuth>
+                </>
+              }
+            />
+            <Route
+              path="place/search/:query"
+              element={<SearchResultScreen />}
+            />
             <Route path="profile">
-              <Route index element={<ProfileScreen />} />
-              <Route path=":username" element={<ProfileScreen />} />
-              <Route path="edit" element={<EditProfileScreen />} />
+              <Route
+                index
+                element={
+                  <>
+                    <RequireAuth>
+                      <ProfileScreen />
+                    </RequireAuth>
+                  </>
+                }
+              />
+              <Route
+                path=":username"
+                element={
+                  <RequireAuth>
+                    <ProfileScreen />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="edit"
+                element={
+                  <RequireAuth>
+                    <EditProfileScreen />
+                  </RequireAuth>
+                }
+              />
             </Route>
           </Route>
 
           <Route path="/signup" element={<SignUp />} />
-
           <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>

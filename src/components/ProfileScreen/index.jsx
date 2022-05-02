@@ -1,7 +1,7 @@
 import React from "react";
 import profile_d from "./demoProfile.json";
 import Profile from "./Profile";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { addUser } from "../../actions/known-users-action";
@@ -15,6 +15,9 @@ const ProfileScreen = () => {
   const [profile, setProfile] = useState();
 
   const knownUsers = useSelector((state) => state.knownUsers);
+  const user = useSelector((state) => state.userStore);
+
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -24,17 +27,19 @@ const ProfileScreen = () => {
     };
 
     if (username) {
-      // TODO: if username is same as the logged in user's username, redirect to /profile instead.
-
+      if (user?.username === username) {
+        navigate("/profile");
+      }
       if (!knownUsers.has(username)) {
         fetchUserHandler();
       }
       setProfile(knownUsers.get(username));
     } else {
-      // TODO: Replace profile_d with the logged in user
-      setProfile(profile_d);
+      if (user) {
+        setProfile(user);
+      }
     }
-  }, [username, dispatch, knownUsers]);
+  }, [username, dispatch, knownUsers, user, navigate]);
 
   return (
     <>

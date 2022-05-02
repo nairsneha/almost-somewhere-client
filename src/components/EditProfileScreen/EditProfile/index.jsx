@@ -1,15 +1,32 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import demoProfile from "../../ProfileScreen/demoProfile.json";
-import possiblePlaceTypes from "../../../data/all-place-types.json";
 import "./edit-profile.css";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../../actions/user-details-actions";
 
 const EditProfile = () => {
-  const [profile, setProfile] = useState(demoProfile);
-  const [favourites, setFavourites] = useState(new Set(demoProfile.favorites));
+  const user = useSelector((state) => state.userStore);
+  const dispatch = useDispatch();
+  const [profile, setProfile] = useState(user);
   const profilePicEditBox = useRef();
   const bannerPicEditBox = useRef();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      setProfile(user);
+    }
+  }, [user]);
+
+  const selectMultipleValuesFromFavourites = (event) => {
+    let values = [];
+    Array.from(event.target.selectedOptions, (option) =>
+      values.push(option.value)
+    );
+    setProfile((oldProfile) => ({ ...oldProfile, favorites: values }));
+  };
 
   const onFirstnameChange = (event) => {
     setProfile((oldProfile) => {
@@ -38,24 +55,12 @@ const EditProfile = () => {
     });
   };
 
-  const onFavouritesChange = (favouriteChanged) => {
-    setFavourites((oldFavourites) => {
-      let fav = new Set(oldFavourites);
-      if (fav.has(favouriteChanged)) {
-        fav.delete(favouriteChanged);
-      } else {
-        fav.add(favouriteChanged);
-      }
-      return fav;
-    });
-  };
-
   const profilePicOnSave = () => {
     if (profilePicEditBox.current.value) {
       setProfile((oldProfile) => {
         return {
           ...oldProfile,
-          profilePicUrl: profilePicEditBox.current.value,
+          profilePhotoURL: profilePicEditBox.current.value,
         };
       });
     }
@@ -66,33 +71,27 @@ const EditProfile = () => {
       setProfile((oldProfile) => {
         return {
           ...oldProfile,
-          bannerPicUrl: bannerPicEditBox.current.value,
+          bannerPhotoURL: bannerPicEditBox.current.value,
         };
       });
     }
   };
 
   const onSaveClick = () => {
-    setProfile((oldProfile) => {
-      return {
-        ...oldProfile,
-        favorites: [...favourites],
-      };
-    });
-    //TODO: Call API to save this user.
+    if (user !== profile) {
+      updateUser(dispatch, profile);
+    }
     navigate(-1);
-  };
-
-  const preprocessPlaceName = (placeName) => {
-    let newName = placeName.replace(/\_/gm, " ");
-    return newName;
   };
 
   return (
     <>
       <div className="mt-2 position-relative">
         <img
-          src={profile.bannerPicUrl}
+          src={
+            profile.bannerPhotoURL ||
+            "https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg"
+          }
           alt={profile.username}
           className="wd-profile-banner"
         />
@@ -108,7 +107,10 @@ const EditProfile = () => {
         <div className="d-flex justify-content-between">
           <div className="wd-profile-picture-container">
             <img
-              src={profile.profilePicUrl}
+              src={
+                profile.profilePhotoURL ||
+                "https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg"
+              }
               alt={profile.username}
               className="wd-profile-picture"
             />
@@ -165,40 +167,38 @@ const EditProfile = () => {
           </div>
         </div>
         <div className="mt-2">
-          <span className="fw-bold">Edit Favourites</span>
-          <div className="mt-1 d-flex flex-wrap gap-3">
-            {possiblePlaceTypes.map((place) => {
-              return (
-                <>
-                  <div className="edit-profile-fav-check" key={place}>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        value={place}
-                        checked={favourites.has(place)}
-                        id={`edit-profile-favourites-${place}`}
-                        onChange={() => onFavouritesChange(place)}
-                      />
-
-                      <label
-                        className="form-check-label"
-                        htmlFor={`edit-profile-favourites-${place}`}
-                      >
-                        {preprocessPlaceName(place)}
-                      </label>
-                    </div>
-                  </div>
-                </>
-              );
-            })}
+          <div className="form-group">
+            <label htmlFor="favourites" className="fw-bold">
+              Edit Favourites
+            </label>
+            <select
+              multiple
+              className="form-control"
+              id="favourites"
+              name="favourites"
+              onChange={(e) => selectMultipleValuesFromFavourites(e)}
+            >
+              <option value="library">library</option>
+              <option value="atm">atm</option>
+              <option value="lodging">lodging</option>
+              <option value="bank">bank</option>
+              <option value="movie_theater">movie theater</option>
+              <option value="police">police</option>
+              <option value="restaurant">restaurant</option>
+              <option value="store">store</option>
+              <option value="subway_station">subway station</option>
+              <option value="hospital">hospital</option>
+              <option value="laundry">laundry</option>
+              <option value="university">university</option>
+              <option value="supermarket">supermarket</option>
+              <option value="gym">gym</option>
+            </select>
           </div>
         </div>
       </div>
       <div
         className="modal fade"
         id="profile-pic-edit-modal"
-        tabindex="-1"
         aria-labelledby="profle-pic-edit-modal-label"
         aria-hidden="true"
       >
@@ -221,7 +221,7 @@ const EditProfile = () => {
                   type="text"
                   className="form-control bg-light text-dark"
                   id="wd-edit-profile-profile-pic"
-                  placeholder={profile.profilePicUrl}
+                  placeholder={profile.profilePhotoURL}
                   ref={profilePicEditBox}
                 />
                 <label htmlFor="wd-edit-profile-profile-pic">
@@ -276,7 +276,7 @@ const EditProfile = () => {
                   className="form-control bg-light text-dark"
                   id="wd-edit-profile-banner"
                   ref={bannerPicEditBox}
-                  placeholder={profile.bannerPicUrl}
+                  placeholder={profile.bannerPhotoURL}
                 />
                 <label htmlFor="wd-edit-profile-banner">Banner Picture</label>
               </div>

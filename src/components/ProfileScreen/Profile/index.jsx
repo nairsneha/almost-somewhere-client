@@ -1,6 +1,13 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { unverifyUser, verifyUser } from "../../../actions/known-users-action";
+import {
+  followUser,
+  unfollowUser,
+} from "../../../actions/user-details-actions";
 import FollowList from "../FollowList";
 import "../profile-screen.css";
 import ProfileReviewList from "../ProfileReviewList";
@@ -8,11 +15,31 @@ import ProfileReviewList from "../ProfileReviewList";
 const Profile = ({ profile, isSelf }) => {
   const [currentTab, setCurrentTab] = useState(1);
 
+  const user = useSelector((state) => state.userStore);
+
+  const dispatch = useDispatch();
+
+  const followOnClick = () => {
+    followUser(dispatch, user?.username, profile?.username);
+  };
+
+  const unfollowOnClick = () => {
+    unfollowUser(dispatch, user?.username, profile?.username);
+  };
+
+  const verifyOnClick = () => {
+    verifyUser(dispatch, profile?.username);
+  };
+
+  const unverifyOnClick = () => {
+    unverifyUser(dispatch, profile?.username);
+  };
+
   return (
     <>
       <img
         src={
-          profile.bannerPicUrl ||
+          profile.bannerPhotoURL ||
           "https://pbs.twimg.com/media/D-jnKUPU4AE3hVR.jpg"
         }
         alt={profile.username}
@@ -23,26 +50,75 @@ const Profile = ({ profile, isSelf }) => {
           <div className="wd-profile-picture-container">
             <img
               src={
-                profile.profilePicUrl ||
+                profile.profilePhotoURL ||
                 "https://hips.hearstapps.com/digitalspyuk.cdnds.net/17/13/1490989105-twitter1.jpg?resize=480:*"
               }
               alt={profile.username}
               className="wd-profile-picture"
             />
           </div>
-          {isSelf && (
-            <div>
-              <Link to="/profile/edit">
-                <button className="btn btn-outline-dark rounded-pill mt-2">
-                  Edit Profile
-                </button>
-              </Link>
-            </div>
-          )}
+          <div className="d-flex gap-3">
+            {!isSelf &&
+              user?.role === "admin" &&
+              (profile?.verified ? (
+                <>
+                  <div>
+                    <button
+                      className="btn btn-dark rounded-pill mt-2"
+                      onClick={unverifyOnClick}
+                    >
+                      Unverify
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div>
+                    <button
+                      className="btn btn-primary rounded-pill mt-2"
+                      onClick={verifyOnClick}
+                    >
+                      Verify
+                    </button>
+                  </div>
+                </>
+              ))}
+            {isSelf && (
+              <div>
+                <Link to="/profile/edit">
+                  <button className="btn btn-outline-dark rounded-pill mt-2">
+                    Edit Profile
+                  </button>
+                </Link>
+              </div>
+            )}
+            {!isSelf &&
+              user &&
+              (user?.following.includes(profile?.username) ? (
+                <div>
+                  <button
+                    className="btn btn-dark rounded-pill mt-2"
+                    onClick={unfollowOnClick}
+                  >
+                    Unfollow
+                  </button>
+                </div>
+              ) : (
+                <div>
+                  <button
+                    className="btn btn-primary rounded-pill mt-2"
+                    onClick={followOnClick}
+                  >
+                    Follow
+                  </button>
+                </div>
+              ))}
+          </div>
         </div>
         <div className="mt-2">
           <h5 className="mb-0">
-            {profile.firstname} {profile.lastname}
+            {profile.firstname} {profile.lastname}{" "}
+            {profile.verified && <i className="fa-solid fa-circle-check"></i>}
           </h5>
           <div className="text-muted">@{profile.username}</div>
         </div>
@@ -83,8 +159,8 @@ const Profile = ({ profile, isSelf }) => {
           </li>
         </ul>
         {currentTab === 1 && <ProfileReviewList username={profile.username} />}
-        {currentTab === 2 && <FollowList usernameList={[1, 2, 3]} />}
-        {currentTab === 3 && <FollowList usernameList={[1, 2, 3]} />}
+        {currentTab === 2 && <FollowList usernameList={profile.followers} />}
+        {currentTab === 3 && <FollowList usernameList={profile.following} />}
       </div>
     </>
   );
