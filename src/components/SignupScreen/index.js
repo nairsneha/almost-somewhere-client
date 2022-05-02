@@ -4,7 +4,7 @@ import logo from '../../logo.png'
 import {Link, useNavigate} from "react-router-dom";
 const SignUp=()=>{
     const navigate = useNavigate();
-    const[user, setUser]=useState({
+    const[user, setUser] = useState({
 
                                       userType:"Admin",
                                       firstname:null,
