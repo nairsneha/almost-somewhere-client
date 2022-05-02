@@ -4,6 +4,7 @@ import { Rating } from "react-simple-star-rating";
 import "./review-item.css";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteReview } from "../../../actions/review-action";
+import { Link } from "react-router-dom";
 
 const ReviewItem = ({
   reviewItem = {
@@ -45,7 +46,14 @@ const ReviewItem = ({
               <div className="d-flex align-self-center align-items-start flex-column">
                 <span className="mx-1">
                   <span>
-                    {reviewItem.authorName || reviewItem?.postedBy?.username}
+                    {reviewItem.authorName || (
+                      <Link
+                        to={`/profile/${reviewItem?.postedBy?.username}`}
+                        style={{ color: "inherit", textDecoration: "none" }}
+                      >
+                        {reviewItem?.postedBy?.username}
+                      </Link>
+                    )}
                   </span>
                 </span>
 
