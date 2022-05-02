@@ -5,7 +5,7 @@ import { REACT_APP_API_BASE } from "../config";
 const GET_PLACE_REVIEWS_API = `${REACT_APP_API_BASE}/reviews/places`;
 const GET_USER_REVIEWS_API = `${REACT_APP_API_BASE}/reviews`;
 const ADD_REVIEW_API = `${REACT_APP_API_BASE}/reviews`;
-const UPDATE_REVIEW_API = `${REACT_APP_API_BASE}/reviews/places`;
+// const UPDATE_REVIEW_API = `${REACT_APP_API_BASE}/reviews/places`;
 const DELETE_REVIEW_API = `${REACT_APP_API_BASE}/reviews/places`;
 
 export const getReviewsByUser = async (username) => {
@@ -37,12 +37,12 @@ export const deleteReview = async (placeId, username) => {
     headers["Authorization"] = token;
   }
   const response = await axios
-    .delete(`${DELETE_REVIEW_API}/${placeId}/${username}`, {headers});
+    .delete(`${DELETE_REVIEW_API}/${username}/${placeId}`, {headers});
   return response.data;
  }
 
- export const updateReview = async (placeId, review) => {
-  const response = await axios
-      .put(`${UPDATE_REVIEW_API}/${placeId}`, review);
-  return response.data;
-  }
+//  export const updateReview = async (placeId, review) => {
+//   const response = await axios
+//       .put(`${UPDATE_REVIEW_API}/${placeId}`, review);
+//   return response.data;
+//   }

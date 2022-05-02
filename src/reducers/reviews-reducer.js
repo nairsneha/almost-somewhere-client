@@ -9,12 +9,12 @@ const reviewsReducer = (state = [], action) => {
             return [action.newReview,
                     ...state]
         case DELETE_REVIEW:
-            state.filter(
+            console.log(action.review._id)
+            return state.filter(
                 reviews => reviews._id !== action.review._id);
-            return state;
-        case UPDATE_REVIEW:
-            return [action.updatedReview,
-                    ...state]
+        // case UPDATE_REVIEW:
+        //     return [action.updatedReview,
+        //             ...state]
         case FIND_REVIEWS_BY_PLACE:
             console.log('hi',typeof action.reviews , action.reviews)
             return Object.values(action.reviews)

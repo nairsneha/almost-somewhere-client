@@ -31,13 +31,13 @@ export const createReview = async (dispatch, review) => {
     });
 }
   
-export const updateReview = async (dispatch, placeId, review) => {
-const updatedReview = await service.createReview(placeId, review);
-dispatch({
-    type: UPDATE_REVIEW,
-    updatedReview
-});
-}
+// export const updateReview = async (dispatch, placeId, review) => {
+// const updatedReview = await service.createReview(placeId, review);
+// dispatch({
+//     type: UPDATE_REVIEW,
+//     updatedReview
+// });
+// }
 
 export const deleteReview = async (dispatch, placeId, username, review) => {
     const response = await service.deleteReview(placeId, username);
