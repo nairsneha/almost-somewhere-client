@@ -1,11 +1,24 @@
-import React, {useState} from "react";
-import {useSelector} from "react-redux";
+import React, {useState, useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import ReviewItem from "./review-item"
 import ReviewForm from "./review-form";
+import { findReviewsByPlace } from "../../../actions/review-action";
 
 const ReviewCardList = ({ placeDetail = {reviews : []}}) => {
 
-    const ourReviews = useSelector(state => state.ourReviews);
+    const placeId = useSelector(({placeDetail}) => placeDetail.placeId);
+
+    const dispatch = useDispatch();
+    const findPlaceReviews = () => {
+            findReviewsByPlace(dispatch, placeId)  
+    }
+    useEffect(() => findPlaceReviews(), [placeId]);
+
+    const ourReviews = useSelector(({ourReviews}) => ourReviews);
+
+    useEffect(() => {
+        console.log(ourReviews)
+    }, [ourReviews])
 
     const reviews  = placeDetail.reviews;
 
@@ -24,8 +37,9 @@ const ReviewCardList = ({ placeDetail = {reviews : []}}) => {
                 <ReviewForm/>
             </div> : ""}
             <div>
+                    {console.log("ourRev start", JSON.stringify(ourReviews),"ourRev end")}
                 {
-                    ourReviews && ourReviews.map(review =>
+                    ourReviews && ourReviews?.map(review =>
                         {review._id = new Date().getTime() + Math.random() + "" 
                         return(<ReviewItem key={review._id} reviewItem={review}/>)
                         })

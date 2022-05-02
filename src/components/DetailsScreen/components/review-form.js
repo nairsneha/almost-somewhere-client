@@ -1,28 +1,38 @@
 import { Rating } from 'react-simple-star-rating';
 import React, {useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import { createReview } from '../../../actions/review-action';
 
 const ReviewForm = () => {
 
     const [rating, setRating] = useState(0)
+
+    const user = useSelector(({userStore}) => userStore)
+    console.log(user)
+
+    const placeId = useSelector(({placeDetail}) => placeDetail.placeId)
+    console.log(placeId)
 
     const handleRating = (rate) => {
         setRating((rate/100) * 5)
     }
 
     const [newReview, setNewReview] = useState({review: ""});
+    
     const dispatch = useDispatch();
 
-    // TODO add authorname and profile from current user
     const createReviewHandler = (newReview) => {
-
-        dispatch({
-            type: 'create-review',
+        const review = {
             text: newReview,
             rating: rating,
-            authorName: "Jane Doe",
-       });
-      }
+            postedBy: {
+                profilePhotoURL: user.profilePhotoURL,
+                username: user.username
+            },
+            placeId: placeId
+       }
+       createReview(dispatch, review)
+    }
 
     return(
     <> 
