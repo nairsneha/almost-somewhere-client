@@ -2,8 +2,7 @@ import React, {useEffect} from "react";
 import LocationCardList from "../common/location-card-list";
 import {useDispatch, useSelector} from "react-redux";
 import {
-    FIND_PLACES_BY_QUERY,
-    findPlaces, findPlacesByQuery
+    FIND_PLACES_BY_QUERY, findPlacesByQuery
 } from "../../actions/nearby-places-action";
 import {useParams} from "react-router-dom";
 
@@ -15,7 +14,9 @@ const SearchResultScreen = () => {
     const findPlaces = () => {
         findPlacesByQuery(dispatcher,FIND_PLACES_BY_QUERY, {query});
     }
-    useEffect(() => findPlaces(), []);
+
+    useEffect(() => findPlaces(), [useParams().query]);
+
 
     return (
         <div>
