@@ -24,8 +24,6 @@ export const findReviewsByUser = async (dispatch, username) => {
 
 export const createReview = async (dispatch, review) => {
   const newReview = await service.createReview(review);
-  console.log("new review");
-  console.log(newReview);
   dispatch({
     type: CREATE_REVIEW,
     newReview,

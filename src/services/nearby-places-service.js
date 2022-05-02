@@ -4,6 +4,11 @@ import { REACT_APP_API_BASE } from "../config";
 const NEARBY_PLACES_API = `${REACT_APP_API_BASE}/places/nearby`;
 const SEARCH_PLACE_API = `${REACT_APP_API_BASE}/places/search`;
 
+const latlng = {
+  latitude: -71.0878681,
+  longitude: 42.3380983,
+};
+
 export const findNearbyPlace = async (params) => {
   const defaultParams = {
     lat: -71.0878681,
@@ -13,12 +18,11 @@ export const findNearbyPlace = async (params) => {
   };
 
   if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
+    navigator.geolocation.getCurrentPosition((position) => {
       defaultParams.lon = position.coords.latitude;
       defaultParams.lat = position.coords.longitude;
     });
   }
-
 
   const safeParams = { ...defaultParams, ...params };
   const response = await axios.get(
@@ -28,11 +32,10 @@ export const findNearbyPlace = async (params) => {
 };
 
 export const findPlaceByQuery = async (params) => {
-  const locationParams = "?location=42.3417141,-71.085637";
-  const response = await axios.get(
-      `${SEARCH_PLACE_API}/${params.query}${locationParams}`
-  );
+  const response = await axios.get(`${SEARCH_PLACE_API}/${params.query}`, {
+    params: {
+      ...latlng,
+    },
+  });
   return response.data.response;
 };
-
-

@@ -32,11 +32,11 @@ const ReviewItem = ({
               <div className="d-flex align-items-center">
                 <img
                   src={
-                    reviewItem.profilePhotoUrl
+                    reviewItem?.profilePhotoUrl
                       ? findImage(reviewItem.profilePhotoUrl)
-                      : "https://www.pngitem.com/pimgs/m/30-307416_profile-icon-png-image-free-download-searchpng-employee.png"
+                      : reviewItem?.postedBy?.profilePhotoURL
                   }
-                  alt={reviewItem.authorName}
+                  alt={reviewItem.authorName || reviewItem?.postedBy?.username}
                   className="img rounded-circle img-fluid review-profile-avatar"
                 />
               </div>
@@ -52,9 +52,7 @@ const ReviewItem = ({
                     readonly={true}
                     allowHover={false}
                     initialValue={0}
-                    ratingValue={
-                      (reviewItem.rating / 5) * 100
-                    } /* Available Props */
+                    ratingValue={(reviewItem.rating / 5) * 100}
                     size="30"
                   />
                 </div>

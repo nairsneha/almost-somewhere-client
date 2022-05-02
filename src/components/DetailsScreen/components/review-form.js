@@ -23,7 +23,7 @@ const ReviewForm = () => {
       text: newReview,
       rating: rating,
       postedBy: {
-        profilePhotoURL: user.profilePhotoURL,
+        profilePhotoURL: user?.profilePhotoURL,
         username: user.username,
       },
       placeId: placeId,
