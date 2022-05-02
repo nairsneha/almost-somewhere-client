@@ -1,4 +1,8 @@
 import { getUserBio } from "../services/user-bio-service";
+import {
+  verifyUser as verify,
+  unverifyUser as unverify,
+} from "../services/user-bio-service";
 
 export const ADD_USER = "ADD_USER";
 export const UPDATE_USER = "UPDATE_USER";
@@ -42,4 +46,20 @@ export const updateUser = async (dispatch, user) => {
     type: UPDATE_USER,
     user: updatedUser,
   });
+};
+
+export const verifyUser = async (dispatch, username) => {
+  const response = await verify(username);
+
+  if (response) {
+    updateUser(dispatch, response);
+  }
+};
+
+export const unverifyUser = async (dispatch, username) => {
+  const response = await unverify(username);
+
+  if (response) {
+    updateUser(dispatch, response);
+  }
 };

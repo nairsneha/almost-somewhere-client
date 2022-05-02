@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 const SignUp = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState({
-    userType: "Admin",
+    role: "Admin",
     firstname: null,
     lastname: null,
     age: null,
@@ -167,13 +167,13 @@ const SignUp = () => {
               onChange={(e) =>
                 setUser({
                   ...user,
-                  userType: e.target.value,
+                  role: e.target.value,
                 })
               }
             >
-              <option value="Admin">Admin</option>
-              <option value="Customer">Customer</option>
-              <option value="Customer">Moderator</option>
+              <option value="admin">Admin</option>
+              <option value="basic">Customer</option>
+              <option value="mod">Moderator</option>
             </select>
           </div>
 

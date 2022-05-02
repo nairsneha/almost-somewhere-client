@@ -39,7 +39,7 @@ const FollowListItem = ({ username }) => {
     <div className="list-group-item d-flex justify-content-between align-items-center">
       <div className="d-flex flex-row align-items-center gap-2">
         <img
-          src={otherUser?.profilePicUrl}
+          src={otherUser?.profilePhotoURL}
           alt={otherUser?.username}
           className="rounded-circle follow-avatar"
         />
@@ -50,7 +50,9 @@ const FollowListItem = ({ username }) => {
           >
             <div className="fw-bold text-wrap">
               {otherUser?.firstname} {otherUser?.lastname}{" "}
-              <i className="fa-solid fa-circle-check"></i>
+              {otherUser?.verified && (
+                <i className="fa-solid fa-circle-check"></i>
+              )}
             </div>
           </Link>
           @{otherUser?.username}

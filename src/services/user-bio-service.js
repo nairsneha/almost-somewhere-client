@@ -38,3 +38,15 @@ export const updateUserBio = async (user) => {
 
   return null;
 };
+
+export const verifyUser = async (username) => {
+  const response = await updateUserBio({ username, verified: true });
+
+  return response;
+};
+
+export const unverifyUser = async (username) => {
+  const response = await updateUserBio({ username, verified: false });
+
+  return response;
+};
