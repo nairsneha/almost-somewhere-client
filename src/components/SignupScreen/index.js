@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import api from "../../services/user-service";
+import logo from "../../logo.png";
 import { Link, useNavigate } from "react-router-dom";
 const SignUp = () => {
   const navigate = useNavigate();
@@ -52,6 +53,13 @@ const SignUp = () => {
       {" "}
       <br />
       <div className="container">
+        <img
+          src={logo}
+          width="250"
+          height="90"
+          className="d-inline-block align-top"
+          alt=""
+        />
         <h1>Sign Up</h1>
         <form>
           <div className="form-group">
