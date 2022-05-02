@@ -52,12 +52,11 @@ const NavBar = () => {
                   value={searchQuery}
                   onChange={(event) => handleUpdateQuery(event.target.value)}
                   className="form-control"
-                  size="80"
+                  size="75"
                 />
                 <span className="input-group-btn">
-                  &nbsp;{" "}
                   <Link className="col" to={`/place/search/${searchQuery}`}>
-                    <button className="btn btn-primary" type="button">
+                    <button style={{"height": "3rem", "borderRadius":0}} className="btn btn-primary" type="button">
                       Search
                     </button>
                   </Link>
