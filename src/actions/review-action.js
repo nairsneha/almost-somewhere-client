@@ -39,11 +39,11 @@ dispatch({
 });
 }
 
-export const deleteReview = async (dispatch, placeId, username) => {
+export const deleteReview = async (dispatch, placeId, username, review) => {
     const response = await service.deleteReview(placeId, username);
     dispatch({
         type: DELETE_REVIEW,
-        response
+        review
     });
 }
   

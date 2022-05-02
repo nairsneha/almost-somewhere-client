@@ -30,8 +30,14 @@ export const createReview = async (review) => {
  }
 
 export const deleteReview = async (placeId, username) => {
+  const headers = {};
+  const token = localStorage.getItem("allmostsomewhere-token");
+
+  if (token) {
+    headers["Authorization"] = token;
+  }
   const response = await axios
-    .delete(`${DELETE_REVIEW_API}/${placeId}/${username}`);
+    .delete(`${DELETE_REVIEW_API}/${placeId}/${username}`, {headers});
   return response.data;
  }
 

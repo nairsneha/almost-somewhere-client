@@ -9,6 +9,8 @@ const reviewsReducer = (state = [], action) => {
             return [action.newReview,
                     ...state]
         case DELETE_REVIEW:
+            state.filter(
+                reviews => reviews._id !== action.review._id);
             return state;
         case UPDATE_REVIEW:
             return [action.updatedReview,

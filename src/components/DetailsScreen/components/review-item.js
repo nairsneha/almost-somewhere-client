@@ -2,7 +2,10 @@ import React from "react";
 import { findImage } from "../../../actions/common-action";
 import { Rating } from "react-simple-star-rating";
 import "./review-item.css";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import { deleteReview } from "../../../actions/review-action";
+
+
 
 const ReviewItem = ({
   reviewItem = {
@@ -13,6 +16,18 @@ const ReviewItem = ({
     text: "Huntington YMCA is a great place to do fitness activities. I recently joined a swimming class (beginner level) and loved it totally! Very clean swimming pool, great instructor, and staffs are friendly. I am going to enroll for another 8 weeks of swimming lessons in the new year (2022)!",
   },
 }) => {
+  
+  const user = useSelector(({userStore}) => userStore)
+
+  console.log(user.username)
+
+  const placeId = useSelector(({placeDetail}) => placeDetail.placeId)
+
+  const dispatch = useDispatch();
+  const deleteReviewHandler = (review) => {
+      console.log(review.id)
+      deleteReview(dispatch, user.username, placeId, review)
+    }
 
   return (
     <>
@@ -31,8 +46,14 @@ const ReviewItem = ({
               />
             </div>
             <div className="d-flex align-self-center align-items-start flex-column">
-              <span className="float-end"><i class="fas fa-times"></i></span>
               <div className="mx-1">
+                {console.log(user.username)}
+                {
+                  (reviewItem.postedBy && 
+                  (user.username === reviewItem.postedBy['username']) || user.role == MOD || user.role == ADMIN) 
+                  ? <span className="float-end" onClick={() => deleteReviewHandler(reviewItem)}><i class="fas fa-times"></i></span> 
+                  : <></>
+                }
                 <h6>{reviewItem.authorName || reviewItem.postedBy['username']}</h6>
               </div>
               <div>
