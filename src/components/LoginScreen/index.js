@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { loginUser as login } from "../../actions/user-details-actions";
 import api from "../../services/user-service";
+import logo from "../../logo.png";
 const Login = () => {
   const navigate = useNavigate();
 
@@ -26,7 +27,7 @@ const Login = () => {
 
   const loginUser = () => {
     if (isObjectEmpty(user)) {
-      alert("Enter all feilds");
+      alert("Enter all fields");
     } else {
       login(dispatch, user);
       navigate("/");
@@ -37,10 +38,15 @@ const Login = () => {
     <>
       <br />
       <div className="container">
-        <h1>Login</h1>
+        <img
+            src={logo}
+            width="250"
+            height="90"
+            className="d-inline-block align-top"
+            alt=""
+        />
         <form>
           <div className="form-group">
-            <label htmlFor="username">username</label>
             <input
               type="email"
               className="form-control"
@@ -56,8 +62,8 @@ const Login = () => {
               }
             />
           </div>
+          <p></p>
           <div className="form-group">
-            <label htmlFor="password">Password</label>
             <input
               type="password"
               className="form-control"
@@ -72,6 +78,7 @@ const Login = () => {
               }
             />
           </div>
+          <p></p>
           <center>
             <button
               type="button"

@@ -2,6 +2,7 @@ import axios from "axios";
 import { REACT_APP_API_BASE } from "../config";
 
 const NEARBY_PLACES_API = `${REACT_APP_API_BASE}/places/nearby`;
+const SEARCH_PLACE_API = `${REACT_APP_API_BASE}/places/search`;
 
 export const findNearbyPlace = async (params) => {
   const defaultParams = {
@@ -16,3 +17,13 @@ export const findNearbyPlace = async (params) => {
   );
   return response.data.response;
 };
+
+export const findPlaceByQuery = async (params) => {
+  const locationParams = "?location=42.3417141,-71.085637";
+  const response = await axios.get(
+      `${SEARCH_PLACE_API}/${params.query}${locationParams}`
+  );
+  return response.data.response;
+};
+
+

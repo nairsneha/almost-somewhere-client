@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 const SignUp = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState({
-    role: "Admin",
+    role: "admin",
     firstname: null,
     lastname: null,
     age: null,
