@@ -1,12 +1,30 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import {
+  followUser,
+  unfollowUser,
+} from "../../../actions/user-details-actions";
 import FollowList from "../FollowList";
 import "../profile-screen.css";
 import ProfileReviewList from "../ProfileReviewList";
 
 const Profile = ({ profile, isSelf }) => {
   const [currentTab, setCurrentTab] = useState(1);
+
+  const user = useSelector((state) => state.userStore);
+
+  const dispatch = useDispatch();
+
+  const followOnClick = () => {
+    followUser(dispatch, user?.username, profile?.username);
+  };
+
+  const unfollowOnClick = () => {
+    unfollowUser(dispatch, user?.username, profile?.username);
+  };
 
   return (
     <>
@@ -39,6 +57,27 @@ const Profile = ({ profile, isSelf }) => {
               </Link>
             </div>
           )}
+          {!isSelf &&
+            user &&
+            (user?.following.includes(profile?.username) ? (
+              <div>
+                <button
+                  className="btn btn-dark rounded-pill mt-2"
+                  onClick={unfollowOnClick}
+                >
+                  Unfollow
+                </button>
+              </div>
+            ) : (
+              <div>
+                <button
+                  className="btn btn-primary rounded-pill mt-2"
+                  onClick={followOnClick}
+                >
+                  Follow
+                </button>
+              </div>
+            ))}
         </div>
         <div className="mt-2">
           <h5 className="mb-0">

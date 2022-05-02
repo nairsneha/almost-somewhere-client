@@ -16,14 +16,11 @@ const knownUsersReducer = (state = new Map(), action) => {
         // No need to change anything
         return new Map(state);
       }
-      // TODO: Add actual logic to see if the current user follows this user.
-      newUser.following = false;
       var _state = new Map(state);
       _state.set(newUser.username, newUser);
       return _state;
     case UPDATE_USER:
       var _state = new Map(state);
-      // TODO: Add actual logic to see if the current user follows this user.
       _state.set(action.user.username, action.user);
       return _state;
     default:

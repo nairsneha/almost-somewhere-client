@@ -57,7 +57,14 @@ function App() {
                   </>
                 }
               />
-              <Route path=":username" element={<ProfileScreen />} />
+              <Route
+                path=":username"
+                element={
+                  <RequireAuth>
+                    <ProfileScreen />
+                  </RequireAuth>
+                }
+              />
               <Route
                 path="edit"
                 element={
