@@ -35,6 +35,8 @@ const ReviewItem = ({
                     reviewItem?.profilePhotoUrl
                       ? findImage(reviewItem.profilePhotoUrl)
                       : reviewItem?.postedBy?.profilePhotoURL
+                      ? reviewItem?.postedBy?.profilePhotoURL
+                      : "https://hips.hearstapps.com/digitalspyuk.cdnds.net/17/13/1490989105-twitter1.jpg?resize=480:*"
                   }
                   alt={reviewItem.authorName || reviewItem?.postedBy?.username}
                   className="img rounded-circle img-fluid review-profile-avatar"
